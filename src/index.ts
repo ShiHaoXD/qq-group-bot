@@ -1,5 +1,8 @@
-import { createClient, GroupMessageEventData, MemberInfo } from "oicq"
 import dotenv from "dotenv"
+import { createClient, GroupMessageEventData, MemberInfo } from "oicq"
+
+import Helper from "./Helper"
+
 dotenv.config()
 
 const groupID: number = parseInt(process.env.GROUP_ID!)
@@ -8,6 +11,8 @@ const messages: GroupMessageEventData[] = []
 let groupMemberList: ReadonlyMap<number, MemberInfo> | null
 const uin = parseInt(process.env.ACCOUNT!) // your account
 const client = createClient(uin)
+
+const helper = new Helper(client, groupID)
 
 //监听上线事件
 client.on("system.online", async () => {
@@ -22,15 +27,10 @@ client.on("system.online", async () => {
       const newInfo = value
       const oldInfo = groupMemberList!.get(key)!
       if (newInfo.card !== oldInfo.card) {
-        console.log(`${oldInfo.card}(${oldInfo.user_id})将群昵称修改为${newInfo.card}`)
-        client.sendGroupMsg(
-          groupID,
-          `${oldInfo.card}(${oldInfo.user_id})将群昵称修改为${newInfo.card}`,
-        )
+        helper.sendMsg(`${oldInfo.card}(${oldInfo.user_id})将群昵称修改为${newInfo.card}`)
         change = true
       }
     })
-
     if (change) groupMemberList = newGroupMemberList
   }, 3000)
 })
@@ -39,6 +39,7 @@ client.on("system.online", async () => {
 client.on("message.group", data => {
   if (data.group_id === groupID) {
     messages.push(data)
+    helper.replyKeyword(data.raw_message)
   }
 })
 
@@ -54,8 +55,7 @@ client.on("notice.group.recall", async data => {
     if (message) {
       const operator = await client.getGroupMemberInfo(data.group_id, data.operator_id)
       if (operator.status === "ok") {
-        client.sendGroupMsg(
-          data.group_id,
+        helper.sendMsg(
           `${operator.data.card}(${operator.data.user_id})撤回了${message.sender.card}(${message.sender.user_id})的一条消息：${message.raw_message}`,
         )
       }

@@ -2,16 +2,17 @@ import { createClient, GroupMessageEventData, MemberInfo } from "oicq"
 import dotenv from "dotenv"
 dotenv.config()
 
-const groupID: number = process.env.GROUP_ID as unknown as number
+const groupID: number = parseInt(process.env.GROUP_ID!)
 
 const messages: GroupMessageEventData[] = []
 let groupMemberList: ReadonlyMap<number, MemberInfo> | null
-const uin = process.env.ACCOUNT as unknown as number // your account
+const uin = parseInt(process.env.ACCOUNT!) // your account
 const client = createClient(uin)
 
 //监听上线事件
 client.on("system.online", async () => {
   console.log("Logged in!")
+  // client.sendGroupMsg(groupID, "群机器人已开启")
   groupMemberList = (await client.getGroupMemberList(groupID, true)).data
 
   setInterval(async () => {

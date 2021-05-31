@@ -1,3 +1,8 @@
-import { foods } from "./config"
+import { Food } from "./interface"
 
-export const genWhatToEat = () => foods[Math.floor(Math.random() * foods.length)]
+export const genWhatToEat = (foods: Food[]) => {
+  const index = Math.floor(Math.random() * foods.length)
+  const food = foods[index]
+  const restaurantsIndex = Math.floor(Math.random() * food.restaurants.length)
+  return `${food.type} ${food.restaurants[restaurantsIndex]}`
+}

@@ -1,16 +1,37 @@
-import { createClient, GroupMessageEventData } from "oicq"
+import { createClient, GroupMessageEventData, MemberInfo } from "oicq"
 import dotenv from "dotenv"
 dotenv.config()
 
 const groupID: number = process.env.GROUP_ID as unknown as number
 
 const messages: GroupMessageEventData[] = []
+let groupMemberList: ReadonlyMap<number, MemberInfo> | null
 const uin = process.env.ACCOUNT as unknown as number // your account
 const client = createClient(uin)
 
 //监听上线事件
 client.on("system.online", async () => {
   console.log("Logged in!")
+  groupMemberList = (await client.getGroupMemberList(groupID, true)).data
+
+  setInterval(async () => {
+    const newGroupMemberList = (await client.getGroupMemberList(groupID, true)).data
+    let change = false
+    newGroupMemberList!.forEach((value, key) => {
+      const newInfo = value
+      const oldInfo = groupMemberList!.get(key)!
+      if (newInfo.card !== oldInfo.card) {
+        console.log(`${oldInfo.card}(${oldInfo.user_id})将群昵称修改为${newInfo.card}`)
+        client.sendGroupMsg(
+          groupID,
+          `${oldInfo.card}(${oldInfo.user_id})将群昵称修改为${newInfo.card}`,
+        )
+        change = true
+      }
+    })
+
+    if (change) groupMemberList = newGroupMemberList
+  }, 3000)
 })
 
 //监听消息并回复

@@ -5,8 +5,8 @@
   "license": "MIT",
   "author": "Cansiny0320",
   "scripts": {
-    "start": "npx ts-node index.ts",
-    "dev": "nodemon index.ts"
+    "start": "npx ts-node ./src/index.ts",
+    "dev": "nodemon ./src/index.ts"
   },
   "dependencies": {
     "dotenv": "^10.0.0",

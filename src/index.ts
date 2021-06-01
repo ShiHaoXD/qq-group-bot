@@ -3,12 +3,14 @@ import { createClient, GroupMessageEventData, MemberInfo } from "oicq"
 
 import Helper from "./Helper"
 import { canRecall } from "./utils"
+import { canrepeatTimes } from "./config"
 
 dotenv.config()
 
 const groupID: number = parseInt(process.env.GROUP_ID!)
 
 const messages: GroupMessageEventData[] = []
+const recentMessages: GroupMessageEventData[] = []
 let groupMemberList: ReadonlyMap<number, MemberInfo> | null
 const uin = parseInt(process.env.ACCOUNT!) // your account
 const client = createClient(uin)
@@ -60,14 +62,19 @@ client.on("message.group", async data => {
   if (group_id === groupID) {
     if (canRecall(role)) {
       const result = await helper.recallKeywords(raw_message, message_id)
-      if (result?.status === "failed") {
-        console.log(`撤回消息失败，原因${result.error.message}`)
+      if (result?.status === "ok") {
+        return
       }
-      return
     }
+    messages.push(data)
+    recentMessages.push(data)
+
+    if (recentMessages.length > canrepeatTimes) {
+      recentMessages.shift()
+      helper.banForRepeat(recentMessages)
+    }
+    helper.replyKeyword(data.raw_message)
   }
-  messages.push(data)
-  helper.replyKeyword(data.raw_message)
 })
 
 client.on("notice.group.recall", async data => {

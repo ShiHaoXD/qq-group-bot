@@ -1,4 +1,4 @@
-import { Client, MessageElem } from "oicq"
+import { Client, GroupMessageEventData, MessageElem } from "oicq"
 
 import { replyKeywords, recallKeywords } from "./config"
 
@@ -16,6 +16,20 @@ export default class Helper {
 
   deleteMsg(msgID: string) {
     return this.client.deleteMsg(msgID)
+  }
+
+  banMember(userId: number, duration: number) {
+    return this.client.setGroupBan(this.groupID, userId, duration)
+  }
+
+  banForRepeat(recentMessages: GroupMessageEventData[]) {
+    const raw = recentMessages[0].raw_message
+    if (recentMessages.every(e => e.raw_message === raw)) {
+      const banTime = Math.ceil(Math.random() * 5) * 60
+      console.log(banTime)
+
+      this.banMember(recentMessages[recentMessages.length - 1].user_id, banTime)
+    }
   }
 
   replyKeyword(raw_message: string) {

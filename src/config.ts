@@ -1,6 +1,8 @@
 import { Food, replyKeyword } from "./interface"
 import { genWhatToEat } from "./utils"
 
+export const canrepeatTimes = 3
+
 const foods: Food[] = [
   {
     type: "面/粉",

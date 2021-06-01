@@ -105,4 +105,9 @@ export const keywords: Keyword[] = [
     regex: /^什么没吃过$/,
     reply: () => genWhatToEat(neverEatFoods),
   },
+  {
+    regex: /^二维码$/,
+    reply:
+      "[CQ:image,file=6791a72977be236f55629bd697a1e260148087-800-1067.jpg][CQ:image,file=1e2dc4263e25c2bf2aee7ac785773151868902-3000-4000.jpg]",
+  },
 ]

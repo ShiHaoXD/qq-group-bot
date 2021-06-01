@@ -1,4 +1,4 @@
-import { Food, Keyword } from "./interface"
+import { Food, replyKeyword } from "./interface"
 import { genWhatToEat } from "./utils"
 
 const foods: Food[] = [
@@ -88,26 +88,28 @@ const neverEatFoods: Food[] = [
   },
 ]
 
-export const keywords: Keyword[] = [
+export const replyKeywords: replyKeyword[] = [
   {
-    regex: /\S*[段琦]\S*/,
+    keyword: /\S*段琦\S*/,
     reply: "[CQ:image,file=9b84db64514d694943dba06d899a52ad14467-284-324.jpg]",
   },
   {
-    regex: /\S*[吴世浩]\S*/,
+    keyword: /\S*吴世浩\S*/,
     reply: "吴世浩？肥吴罢了",
   },
   {
-    regex: /^吃什么$/,
+    keyword: "吃什么",
     reply: () => genWhatToEat(foods),
   },
   {
-    regex: /^什么没吃过$/,
+    keyword: "什么没吃过",
     reply: () => genWhatToEat(neverEatFoods),
   },
   {
-    regex: /^二维码$/,
+    keyword: "二维码",
     reply:
       "[CQ:image,file=6791a72977be236f55629bd697a1e260148087-800-1067.jpg][CQ:image,file=1e2dc4263e25c2bf2aee7ac785773151868902-3000-4000.jpg]",
   },
 ]
+
+export const recallKeywords: Array<string | RegExp> = [/\S*拼多多|pdd\S*/, "淘宝"]

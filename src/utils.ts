@@ -1,3 +1,4 @@
+import { GroupRole } from "oicq"
 import { Food } from "./interface"
 
 export const genWhatToEat = (foods: Food[]) => {
@@ -5,4 +6,8 @@ export const genWhatToEat = (foods: Food[]) => {
   const food = foods[index]
   const restaurantsIndex = Math.floor(Math.random() * food.restaurants.length)
   return `${food.type} ${food.restaurants[restaurantsIndex]}`
+}
+
+export const canRecall = (role: GroupRole) => {
+  return role === "member"
 }

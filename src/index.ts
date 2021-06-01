@@ -2,6 +2,7 @@ import dotenv from "dotenv"
 import { createClient, GroupMessageEventData, MemberInfo } from "oicq"
 
 import Helper from "./Helper"
+import { canRecall } from "./utils"
 
 dotenv.config()
 
@@ -40,11 +41,24 @@ client.on("system.online", async () => {
 })
 
 //监听消息并回复
-client.on("message.group", data => {
-  if (data.group_id === groupID) {
-    messages.push(data)
-    helper.replyKeyword(data.raw_message)
+client.on("message.group", async data => {
+  const {
+    message_id,
+    raw_message,
+    group_id,
+    sender: { role },
+  } = data
+  if (group_id === groupID) {
+    if (canRecall(role)) {
+      const result = await helper.recallKeywords(raw_message, message_id)
+      if (result?.status === "failed") {
+        console.log(`撤回消息失败，原因${result.error.message}`)
+      }
+      return
+    }
   }
+  messages.push(data)
+  helper.replyKeyword(data.raw_message)
 })
 
 client.on("notice.group.recall", async data => {

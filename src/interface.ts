@@ -1,5 +1,5 @@
-export interface Keyword {
-  regex: RegExp
+export interface replyKeyword {
+  keyword: RegExp | string
   reply: string | ((arg?: any) => string)
 }
 

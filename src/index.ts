@@ -14,16 +14,11 @@ const client = createClient(uin)
 
 const helper = new Helper(client, groupID)
 
-//监听上线事件
-client.on("system.online", async () => {
-  console.log("Logged in!")
-  // client.sendGroupMsg(groupID, "群机器人已开启")
-  groupMemberList = (await client.getGroupMemberList(groupID, true)).data
-
-  setInterval(async () => {
-    const newGroupMemberList = (await client.getGroupMemberList(groupID, true)).data
-    let change = false
-    newGroupMemberList!.forEach((value, key) => {
+async function GroupMemberCardChanged() {
+  const newGroupMemberList = (await client.getGroupMemberList(groupID, true)).data
+  let change = false
+  if (newGroupMemberList) {
+    newGroupMemberList.forEach((value, key) => {
       const newInfo = value
       const oldInfo = groupMemberList!.get(key)!
       if (newInfo.card !== oldInfo.card) {
@@ -32,7 +27,16 @@ client.on("system.online", async () => {
       }
     })
     if (change) groupMemberList = newGroupMemberList
-  }, 3000)
+  }
+  setTimeout(GroupMemberCardChanged, 3000)
+}
+
+//监听上线事件
+client.on("system.online", async () => {
+  console.log("Logged in!")
+  // client.sendGroupMsg(groupID, "群机器人已开启")
+  groupMemberList = (await client.getGroupMemberList(groupID, true)).data
+  setTimeout(GroupMemberCardChanged, 3000)
 })
 
 //监听消息并回复

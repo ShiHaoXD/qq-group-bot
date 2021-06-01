@@ -98,11 +98,11 @@ export const keywords: Keyword[] = [
     reply: "吴世浩？肥吴罢了",
   },
   {
-    regex: /吃什么/,
+    regex: /^吃什么$/,
     reply: () => genWhatToEat(foods),
   },
   {
-    regex: /什么没吃过/,
+    regex: /^什么没吃过$/,
     reply: () => genWhatToEat(neverEatFoods),
   },
 ]

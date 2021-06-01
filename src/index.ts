@@ -16,12 +16,17 @@ const client = createClient(uin)
 const helper = new Helper(client, groupID)
 
 async function GroupMemberCardChanged() {
-  const newGroupMemberList = (await client.getGroupMemberList(groupID, true)).data
+  const newGroupMemberList = (await client.getGroupMemberList(groupID)).data
   let change = false
   if (newGroupMemberList) {
     newGroupMemberList.forEach((value, key) => {
       const newInfo = value
-      const oldInfo = groupMemberList!.get(key)!
+      let oldInfo: MemberInfo
+      if (groupMemberList?.has(key)) {
+        oldInfo = groupMemberList?.get(key)!
+      } else {
+        return
+      }
       if (newInfo.card !== oldInfo.card) {
         helper.sendMsg(`${oldInfo.card}(${oldInfo.user_id})将群昵称修改为${newInfo.card}`)
         change = true
@@ -36,8 +41,12 @@ async function GroupMemberCardChanged() {
 client.on("system.online", async () => {
   console.log("Logged in!")
   // client.sendGroupMsg(groupID, "群机器人已开启")
-  groupMemberList = (await client.getGroupMemberList(groupID, true)).data
-  setTimeout(GroupMemberCardChanged, 3000)
+  groupMemberList = (await client.getGroupMemberList(groupID)).data
+  if (groupMemberList) {
+    setTimeout(GroupMemberCardChanged, 3000)
+  } else {
+    console.log("群成员获取失败")
+  }
 })
 
 //监听消息并回复

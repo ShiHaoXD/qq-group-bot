@@ -42,7 +42,7 @@ async function GroupMemberCardChanged() {
 //监听上线事件
 client.on("system.online", async () => {
   console.log("Logged in!")
-  // client.sendGroupMsg(groupID, "群机器人已开启")
+  client.sendGroupMsg(groupID, "群机器人已开启")
   groupMemberList = (await client.getGroupMemberList(groupID)).data
   if (groupMemberList) {
     setTimeout(GroupMemberCardChanged, 3000)

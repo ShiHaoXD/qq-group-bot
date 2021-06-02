@@ -5,12 +5,15 @@
   "license": "MPL-2.0",
   "author": "Cansiny0320",
   "scripts": {
-    "start": "npx ts-node ./src/index.ts",
-    "dev": "nodemon ./src/index.ts"
+    "start": "tsc & pm2 start dist/index.js",
+    "dev": "nodemon ./src/index.ts",
+    "stop": "pm2 stop index"
   },
   "dependencies": {
     "dotenv": "^10.0.0",
-    "oicq": "^1.17.2"
+    "global": "^4.4.0",
+    "oicq": "^1.17.2",
+    "pm2": "^4.5.6"
   },
   "devDependencies": {
     "@types/node": "^15.6.1",

@@ -23,6 +23,12 @@ export default class Helper {
   }
 
   banForRepeat(recentMessages: GroupMessageEventData[]) {
+    recentMessages = recentMessages.map(e => {
+      if (e.raw_message.startsWith("[CQ:")) {
+        e.raw_message = e.raw_message.split(",")[1]
+      }
+      return e
+    })
     const raw = recentMessages[0].raw_message
     if (recentMessages.every(e => e.raw_message === raw)) {
       const banTime = Math.ceil(Math.random() * 5) * 60

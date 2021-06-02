@@ -26,8 +26,6 @@ export default class Helper {
     const raw = recentMessages[0].raw_message
     if (recentMessages.every(e => e.raw_message === raw)) {
       const banTime = Math.ceil(Math.random() * 5) * 60
-      console.log(banTime)
-
       this.banMember(recentMessages[recentMessages.length - 1].user_id, banTime)
     }
   }

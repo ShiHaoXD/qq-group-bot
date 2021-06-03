@@ -1,6 +1,7 @@
 export interface replyKeyword {
   keyword: RegExp | string
-  reply: string | ((arg?: any) => string)
+  reply: string | ((arg?: any) => string | Promise<string>)
+  interactive?: boolean
 }
 
 export interface Food {

@@ -1,6 +1,6 @@
 import { Food, replyKeyword } from "./interface"
-import { genWhatToEat } from "./utils"
-
+import { genBaiduSearchUrl, genWhatToEat } from "./utils"
+import getWeiboHotNews from "./weibo"
 export const canrepeatTimes = 3
 
 const foods: Food[] = [
@@ -112,6 +112,19 @@ export const replyKeywords: replyKeyword[] = [
     keyword: "二维码",
     reply:
       "[CQ:image,file=6791a72977be236f55629bd697a1e260148087-800-1067.jpg][CQ:image,file=1e2dc4263e25c2bf2aee7ac785773151868902-3000-4000.jpg]",
+  },
+  {
+    keyword: "热搜",
+    reply: getWeiboHotNews,
+  },
+  {
+    keyword: /百度 [\S\s]*/,
+    reply: genBaiduSearchUrl,
+    interactive: true,
+  },
+  {
+    keyword: /\S*机器人\S*/,
+    reply: "你才是机器人",
   },
 ]
 

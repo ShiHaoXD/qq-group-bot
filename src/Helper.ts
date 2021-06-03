@@ -1,6 +1,7 @@
 import { Client, GroupMessageEventData, MessageElem } from "oicq"
 
 import { replyKeywords, recallKeywords } from "./config"
+import { isPromise } from "./utils"
 
 export default class Helper {
   client: Client
@@ -37,14 +38,17 @@ export default class Helper {
   }
 
   replyKeyword(raw_message: string) {
-    replyKeywords.forEach(keyword => {
-      const regex =
-        typeof keyword.keyword === "string" ? new RegExp(`^${keyword.keyword}$`) : keyword.keyword
+    replyKeywords.forEach(async e => {
+      const regex = typeof e.keyword === "string" ? new RegExp(`^${e.keyword}$`) : e.keyword
       if (regex.test(raw_message)) {
-        if (typeof keyword.reply === "string") {
-          this.sendMsg(keyword.reply)
+        if (typeof e.reply === "string") {
+          this.sendMsg(e.reply)
+        } else if (e.interactive) {
+          const str = raw_message.split(" ").slice(1).join(" ")
+          this.sendMsg(e.reply(str) as string)
         } else {
-          this.sendMsg(keyword.reply())
+          const result = e.reply()
+          isPromise(result) ? this.sendMsg(await result) : this.sendMsg(result)
         }
       }
     })

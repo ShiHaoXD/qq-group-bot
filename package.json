@@ -10,6 +10,8 @@
     "stop": "pm2 stop index"
   },
   "dependencies": {
+    "axios": "^0.21.1",
+    "cheerio": "^1.0.0-rc.9",
     "dotenv": "^10.0.0",
     "global": "^4.4.0",
     "oicq": "^1.17.2",

@@ -1,9 +1,9 @@
 import dotenv from "dotenv"
 import { createClient, GroupMessageEventData, MemberInfo } from "oicq"
 
+import { canrepeatTimes } from "./config"
 import Helper from "./Helper"
 import { canRecall } from "./utils"
-import { canrepeatTimes } from "./config"
 
 dotenv.config()
 

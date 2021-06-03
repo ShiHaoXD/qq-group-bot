@@ -1,4 +1,5 @@
 import { GroupRole } from "oicq"
+
 import { Food } from "./interface"
 
 export const genWhatToEat = (foods: Food[]) => {

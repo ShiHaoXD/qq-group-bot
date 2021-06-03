@@ -1,7 +1,7 @@
 import { Food, replyKeyword } from "./interface"
+import { applyLeaveSchool, getWeiboHotNews } from "./plugins/"
 import { genBaiduSearchUrl, genWhatToEat } from "./utils"
-import getWeiboHotNews from "./plugins/weibo"
-import { applyLeaveSchool } from "./plugins/weCqupt"
+
 export const canrepeatTimes = 3
 
 const foods: Food[] = [

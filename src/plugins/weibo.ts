@@ -1,9 +1,10 @@
-const API = "https://s.weibo.com/top/summary?cate=realtimehot"
 import axios from "axios"
 import cheerio from "cheerio"
+
 import { getNowTime } from "../utils"
 
-export default async () => {
+const API = "https://s.weibo.com/top/summary?cate=realtimehot"
+export const getWeiboHotNews = async () => {
   const result: string[] = []
   const { data } = await axios.get(API)
   const $ = cheerio.load(data)

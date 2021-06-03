@@ -1,7 +1,7 @@
 const API = "https://s.weibo.com/top/summary?cate=realtimehot"
 import axios from "axios"
 import cheerio from "cheerio"
-import { getNowTime } from "./utils"
+import { getNowTime } from "../utils"
 
 export default async () => {
   const result: string[] = []

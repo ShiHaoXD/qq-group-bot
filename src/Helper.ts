@@ -45,7 +45,7 @@ export default class Helper {
           this.sendMsg(e.reply)
         } else if (e.interactive) {
           const str = raw_message.split(" ").slice(1).join(" ")
-          this.sendMsg(e.reply(str) as string)
+          this.sendMsg((await e.reply(str)) as string)
         } else {
           const result = e.reply()
           isPromise(result) ? this.sendMsg(await result) : this.sendMsg(result)

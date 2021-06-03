@@ -5,9 +5,13 @@
   "license": "MPL-2.0",
   "author": "Cansiny0320",
   "scripts": {
-    "start": "tsc & pm2 start dist/index.js",
+    "start": "tsc & pm2 start dist/index.js --name=bot",
     "dev": "nodemon ./src/index.ts",
-    "stop": "pm2 stop index"
+    "stop": "pm2 stop index",
+    "log": "pm2 logs bot",
+    "list": "pm2 list",
+    "delete": "pm2 delete bot",
+    "test": "npx ts-node test.ts"
   },
   "dependencies": {
     "axios": "^0.21.1",

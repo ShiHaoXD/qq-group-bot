@@ -1,6 +1,7 @@
 import { Food, replyKeyword } from "./interface"
 import { genBaiduSearchUrl, genWhatToEat } from "./utils"
-import getWeiboHotNews from "./weibo"
+import getWeiboHotNews from "./plugins/weibo"
+import { applyLeaveSchool } from "./plugins/weCqupt"
 export const canrepeatTimes = 3
 
 const foods: Food[] = [
@@ -101,6 +102,14 @@ export const replyKeywords: replyKeyword[] = [
     reply: "吴世浩？肥吴罢了",
   },
   {
+    keyword: "骚零",
+    reply: "[CQ:image,file=10017edb411edcd91d354f442274f62663480-472-923.jpg]",
+  },
+  {
+    keyword: "烧钢",
+    reply: "[CQ:image,file=3f07480bf24bc86d2c8c8777f65a250243022-852-640.jpg]",
+  },
+  {
     keyword: "吃什么",
     reply: () => genWhatToEat(foods),
   },
@@ -120,6 +129,11 @@ export const replyKeywords: replyKeyword[] = [
   {
     keyword: /百度 [\S\s]*/,
     reply: genBaiduSearchUrl,
+    interactive: true,
+  },
+  {
+    keyword: /申请 [\S]*/,
+    reply: applyLeaveSchool,
     interactive: true,
   },
   {

@@ -1,7 +1,7 @@
 import { Client, GroupMessageEventData, MessageElem } from "oicq"
 
 import { recallKeywords, replyKeywords } from "./config"
-import { isPromise } from "./utils"
+import { isPromise } from "./shared"
 
 export default class Helper {
   client: Client

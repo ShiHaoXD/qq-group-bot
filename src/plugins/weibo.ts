@@ -1,7 +1,7 @@
 import axios from "axios"
 import cheerio from "cheerio"
 
-import { getNowTime } from "../utils"
+import { getNowTime } from "../shared"
 
 const API = "https://s.weibo.com/top/summary?cate=realtimehot"
 export const getWeiboHotNews = async () => {

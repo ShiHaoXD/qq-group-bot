@@ -1,5 +1,7 @@
 import axios from "axios"
 
+import { getTodayDate } from "../shared"
+
 const applyAPI = "https://we.cqupt.edu.cn/api/lxsp/post_lxsp_spxx_test0914.php"
 
 const options = {
@@ -9,6 +11,19 @@ const options = {
     "content-type": "application/json",
   },
 }
+
+const initalInfo = {
+  nj: "2019",
+  qjsy: "1",
+  wcxxdd: "1",
+  wcmdd: "重庆市,重庆市,南岸区",
+  yjfxsj: getTodayDate(),
+  wcrq: getTodayDate(),
+  qjlx: "市内当日离返校",
+  beizhu: "",
+  timestamp: Math.ceil(+new Date() / 1000),
+}
+
 const infos: { [name: string]: any } = {
   /**
    * example 
@@ -35,7 +50,7 @@ export const applyLeaveSchool = async (name: string) => {
     const { data } = await axios.post(
       applyAPI,
       {
-        key: Buffer.from(JSON.stringify(infos[name])).toString("base64"),
+        key: Buffer.from(JSON.stringify({ ...infos[name], ...initalInfo })).toString("base64"),
       },
       options,
     )

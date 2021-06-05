@@ -1,3 +1,9 @@
+## [1.0.1](https://github.com/Cansiny0320/qq-group-bot/compare/v1.0.0...v1.0.1) (2021-06-05)
+
+### Bug Fixes
+
+- 修复成员群昵称修改提示 ([a124f21](https://github.com/Cansiny0320/qq-group-bot/commit/a124f21874de99709a2523b75b5708caf17248e0))
+
 # 1.0.0 (2021-06-04)
 
 ### Bug Fixes

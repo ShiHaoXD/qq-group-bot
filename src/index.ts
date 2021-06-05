@@ -24,14 +24,12 @@ async function GroupMemberCardChanged() {
     newGroupMemberList.forEach((value, key) => {
       const newInfo = value
       let oldInfo: MemberInfo
-      if (groupMemberList?.has(key)) {
-        oldInfo = groupMemberList?.get(key)!
-      } else {
-        return
-      }
-      if (newInfo.card !== oldInfo.card) {
-        helper.sendMsg(`${oldInfo.card}(${oldInfo.user_id})将群昵称修改为${newInfo.card}`)
-        change = true
+      if (groupMemberList!.has(key)) {
+        oldInfo = groupMemberList!.get(key)!
+        if (newInfo.card !== oldInfo.card) {
+          helper.sendMsg(`${oldInfo.card}(${oldInfo.user_id})将群昵称修改为${newInfo.card}`)
+          change = true
+        }
       }
     })
     if (change) groupMemberList = newGroupMemberList
@@ -42,7 +40,7 @@ async function GroupMemberCardChanged() {
 //监听上线事件
 client.on("system.online", async () => {
   console.log("Logged in!")
-  // client.sendGroupMsg(groupID, "群机器人已开启")
+  client.sendGroupMsg(groupID, "群机器人已开启")
   groupMemberList = (await client.getGroupMemberList(groupID)).data
   if (groupMemberList) {
     console.log("群成员获取成功")

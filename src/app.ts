@@ -27,7 +27,7 @@ async function GroupMemberCardChanged() {
       let oldInfo: MemberInfo;
       if (groupMemberList!.has(key)) {
         oldInfo = groupMemberList!.get(key)!;
-        if (newInfo.card !== oldInfo.card) {
+        if (newInfo.card !== oldInfo.card && newInfo.card && oldInfo.card) {
           helper.sendMsg(
             `${oldInfo.card}(${oldInfo.user_id})将群昵称修改为${newInfo.card}`
           );

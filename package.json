@@ -5,8 +5,7 @@
   "license": "MPL-2.0",
   "author": "Cansiny0320",
   "scripts": {
-    "start": "yarn build & pm2 start build/app.js --name=bot",
-    "build": "tsc",
+    "start": "pm2 start build/app.js --name=bot",
     "dev": "nodemon ./src/app.ts",
     "stop": "pm2 stop bot",
     "log": "pm2 logs bot",

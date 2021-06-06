@@ -69,5 +69,6 @@ export default class Helper {
     ) {
       return this.deleteMsg(msgID);
     }
+    return;
   }
 }

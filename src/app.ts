@@ -1,11 +1,11 @@
-import dotenv from 'dotenv';
+import {config} from 'dotenv';
 import {createClient, GroupMessageEventData, MemberInfo} from 'oicq';
 
 import {canrepeatTimes} from './config';
 import Helper from './Helper';
 import {canRecall} from './utils';
 
-dotenv.config();
+config();
 
 const groupID: number = parseInt(process.env.GROUP_ID!);
 
@@ -64,7 +64,7 @@ client.on('message.group', async data => {
   if (group_id === groupID) {
     if (canRecall(role)) {
       const result = await helper.recallKeywords(raw_message, message_id);
-      if (result?.status === 'ok') {
+      if (result && result.status === 'ok') {
         return;
       }
     }

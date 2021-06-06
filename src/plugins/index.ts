@@ -1,2 +1,2 @@
-export * from "./weCqupt"
-export * from "./weibo"
+export * from './weCqupt';
+export * from './weibo';

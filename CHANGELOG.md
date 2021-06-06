@@ -1,3 +1,12 @@
+## [1.0.2](https://github.com/Cansiny0320/qq-group-bot/compare/v1.0.1...v1.0.2) (2021-06-06)
+
+
+### Bug Fixes
+
+* 尝试解决显示昵称修改偶尔会显示为空的bug ([4112980](https://github.com/Cansiny0320/qq-group-bot/commit/41129802183f8245f975898957be76eaa90b0639))
+
+
+
 ## [1.0.1](https://github.com/Cansiny0320/qq-group-bot/compare/v1.0.0...v1.0.1) (2021-06-05)
 
 ### Bug Fixes

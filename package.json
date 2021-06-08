@@ -2,7 +2,7 @@
   "name": "qq-bot",
   "version": "1.0.2",
   "main": "index.js",
-  "license": "MPL-2.0",
+  "license": "MIT",
   "author": "Cansiny0320",
   "scripts": {
     "start": "pm2 start build/app.js --name=bot",

@@ -1,6 +1,6 @@
 export const getTodayDate = () =>
   new Date()
-    .toLocaleDateString()
+    .toLocaleDateString('zh-CN')
     .split('/')
     .map(e => e.padStart(2, '0'))
     .join('-');

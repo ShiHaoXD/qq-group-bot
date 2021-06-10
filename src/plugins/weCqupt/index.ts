@@ -62,7 +62,7 @@ async function check(msg: string, sender: any) {
 function groupListener(data: GroupMessageEventData) {
   const {raw_message, group_id} = data;
   if (group_id && groupID !== group_id) return;
-  check(raw_message, helper.sendMsg);
+  check(raw_message, helper.sendMsg.bind(helper));
 }
 
 function privateListener(data: PrivateMessageEventData) {

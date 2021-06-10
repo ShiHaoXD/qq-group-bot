@@ -7,7 +7,10 @@ import {Plugin} from '../../shared/types';
 import {infos} from './config.private';
 
 const applyAPI = 'https://we.cqupt.edu.cn/api/lxsp/post_lxsp_spxx_test0914.php';
-
+const leaveAPI =
+  'https://we.cqupt.edu.cn/api/lxsp/post_lxsp_sm_test20210311.php';
+const listAPI =
+  'https://we.cqupt.edu.cn/api/lxsp/get_lxsp_list_gxw20210316.php';
 const options = {
   headers: {
     'User-Agent':
@@ -25,7 +28,7 @@ const initalInfo = {
   beizhu: '',
 };
 
-const applyLeaveSchool = async (name: string) => {
+async function applyLeaveSchool(name: string) {
   if (Object.keys(infos).includes(name)) {
     const requestData = {
       ...infos[name],
@@ -49,13 +52,69 @@ const applyLeaveSchool = async (name: string) => {
   } else {
     return '没有你的数据 请联系管理员添加';
   }
-};
+}
+
+async function leaveSchool(name: string) {
+  const chu = {
+    type: '出校',
+    version: '1.1',
+    location: '崇文门',
+    latitude: '',
+    longitude: '',
+    timestamp: getNowTimestamp(),
+  };
+  if (Object.keys(infos).includes(name)) {
+    const userInfo = {
+      openid: infos[name].openid,
+      xh: infos[name].xh,
+    };
+    const {data: listData} = await axios.post(
+      listAPI,
+      {
+        key: Buffer.from(
+          JSON.stringify({
+            ...userInfo,
+            page: '1',
+            timestamp: getNowTimestamp(),
+          })
+        ).toString('base64'),
+      },
+      options
+    );
+
+    const requestData = {
+      ...chu,
+      ...userInfo,
+      log_id: listData.data.result[0].log_id,
+    };
+
+    const {data} = await axios.post(
+      leaveAPI,
+      {
+        key: Buffer.from(JSON.stringify(requestData)).toString('base64'),
+      },
+      options
+    );
+    if (data.status === 200) {
+      return '申请成功';
+    } else {
+      return `申请失败\n请求数据：${requestData}\n返回数据${data}`;
+    }
+  } else {
+    return '没有你的数据 请联系管理员添加';
+  }
+}
 
 async function check(msg: string, sender: any) {
   const regex = /申请 [\S]*/;
+  const regexLeave = /[出离]校 [\S]*/;
   if (regex.test(msg)) {
     const name = msg.split(' ')[1];
     sender(await applyLeaveSchool(name));
+  }
+  if (regexLeave.test(msg)) {
+    const name = msg.split(' ')[1];
+    sender(await leaveSchool(name));
   }
 }
 

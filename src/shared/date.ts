@@ -5,12 +5,9 @@ export const getTodayDate = () =>
     .map(e => e.padStart(2, '0'))
     .join('-');
 
-export const isPromise = <T = any>(val: any): val is Promise<T> =>
-  !!val &&
-  (typeof val === 'object' || typeof val === 'function') &&
-  typeof val.then === 'function';
+export const getNowTimestamp = () => Math.round(+new Date() / 1000);
 
-export const getNowTime = () =>
+export const getNowTimeString = () =>
   `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString(
     'chinese',
     {

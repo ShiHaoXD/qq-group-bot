@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/Cansiny0320/qq-group-bot/compare/v1.0.2...v1.1.0) (2021-06-10)
+
+
+### Bug Fixes
+
+* toLocalString函数需要显示地指定时区，避免返回的日期格式不一致 ([c341298](https://github.com/Cansiny0320/qq-group-bot/commit/c3412986a5e17df2ec211b7e22f0da087667f265))
+
+
+
 ## [1.0.2](https://github.com/Cansiny0320/qq-group-bot/compare/v1.0.1...v1.0.2) (2021-06-06)
 
 

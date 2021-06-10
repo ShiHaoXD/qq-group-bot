@@ -1,14 +1,14 @@
 export interface replyKeyword {
-  regex: RegExp;
-  reply: string;
+  readonly regex: RegExp;
+  readonly reply: string;
 }
 
 export interface Food {
-  type: string;
-  restaurants: string[];
+  readonly type: string;
+  readonly restaurants: string[];
 }
 
 export interface Plugin {
-  install: () => void;
-  name?: string;
+  readonly install: () => void;
+  readonly name?: string;
 }

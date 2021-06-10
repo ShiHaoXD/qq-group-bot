@@ -1,8 +1,8 @@
 import {Client, MessageElem} from 'oicq';
 
 export default class Helper {
-  client: Client;
-  groupID: number;
+  readonly client: Client;
+  readonly groupID: number;
 
   constructor(client: Client, groupID: number) {
     this.client = client;

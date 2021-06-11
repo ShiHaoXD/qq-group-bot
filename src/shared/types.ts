@@ -20,9 +20,12 @@ export interface ZscyAccount {
 
 export interface StudentInfo {
   [name: string]: {
-    xh: string;
-    name: string;
-    xy: string;
-    openid: string;
+    info: {
+      xh: string;
+      name: string;
+      xy: string;
+      openid: string;
+    };
+    owner_id: number;
   };
 }

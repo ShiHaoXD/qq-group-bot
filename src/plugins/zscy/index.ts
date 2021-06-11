@@ -13,14 +13,16 @@ const options = {
 };
 
 function checkIn() {
+  console.log('checkin');
+
   zscyAccounts.forEach(async account => {
     const {data} = await axios.post(checkInAPI, account, options);
     switch (data.status) {
       case 200:
-        helper.sendMsg(`${account.idnum}签到成功`);
+        helper.sendMsg(`${account.stunum}签到成功`);
         break;
       case 403:
-        helper.sendMsg(`${account.idnum}签到失败，今日已签到`);
+        helper.sendMsg(`${account.stunum}签到失败，今日已签到`);
         break;
     }
   });
@@ -28,7 +30,7 @@ function checkIn() {
 
 function install() {
   // 每天0点过1秒
-  scheduleJob('1 0 0 * *', checkIn);
+  scheduleJob('1 0 0 * * *', checkIn);
 }
 
 const plugin: Plugin = {

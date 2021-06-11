@@ -12,3 +12,8 @@ export interface Plugin {
   readonly install: () => void;
   readonly name?: string;
 }
+
+export interface ZscyAccount {
+  readonly stunum: string; // 账号
+  readonly idnum: string; // 密码
+}

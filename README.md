@@ -13,10 +13,14 @@
 - 出校申请/立即出校
 - 掌上重邮定时签到
 
-# 使用
+## 使用
 
 ```
 $ yarn
 
 $ yarn start
 ```
+
+## ❗ tips
+
+涉及到隐私信息的配置在 `config.private.ts` 文件，未上传到 git，可以按照 `config.example.ts` 的格式自己新建

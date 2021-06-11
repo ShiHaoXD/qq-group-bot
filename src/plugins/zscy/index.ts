@@ -3,18 +3,20 @@ import {scheduleJob} from 'node-schedule';
 import axios from 'axios';
 import {zscyAccounts} from './config.private';
 import {helper} from '../../bot';
+import qs from 'qs';
+
 const checkInAPI =
   'https://be-prod.redrock.team/magipoke-intergral/QA/Integral/checkIn';
 
 const options = {
   headers: {
-    'Content-Type': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded',
   },
 };
 
 function checkIn() {
   zscyAccounts.forEach(async account => {
-    const {data} = await axios.post(checkInAPI, account, options);
+    const {data} = await axios.post(checkInAPI, qs.stringify(account), options);
     switch (data.status) {
       case 200:
         helper.sendMsg(`${account.stunum}签到成功`);

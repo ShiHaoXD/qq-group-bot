@@ -1,30 +1,15 @@
 import {Plugin} from '../../shared/types';
 import {scheduleJob} from 'node-schedule';
-import axios from 'axios';
 import {zscyAccounts} from './config.private';
 import {helper} from '../../bot';
-import qs from 'qs';
-
-const checkInAPI =
-  'https://be-prod.redrock.team/magipoke-intergral/QA/Integral/checkIn';
-const cheackInStatusAPI =
-  'https://be-prod.redrock.team/magipoke-intergral/QA/User/getScoreStatus';
-const options = {
-  headers: {
-    'Content-Type': 'application/x-www-form-urlencoded',
-  },
-};
+import {checkIn as checkInAPI, getCheckInStatus} from './api';
 
 function checkIn() {
   zscyAccounts.forEach(async account => {
-    const {data} = await axios.post(checkInAPI, qs.stringify(account), options);
+    const {data} = await checkInAPI(account);
     switch (data.status) {
       case 200: {
-        const {data: statusData} = await axios.post(
-          cheackInStatusAPI,
-          qs.stringify(account),
-          options
-        );
+        const {data: statusData} = await getCheckInStatus(account);
         const {
           data: {check_in_days, rank, percent},
           status,

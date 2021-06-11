@@ -1,23 +1,10 @@
-import axios from 'axios';
 import {GroupMessageEventData, PrivateMessageEventData} from 'oicq';
 
 import {bot, helper, groupID} from '../../bot';
 import {getNowTimestamp, getTodayDate} from '../../shared/date';
 import {Plugin} from '../../shared/types';
 import {infos} from './config.private';
-
-const applyAPI = 'https://we.cqupt.edu.cn/api/lxsp/post_lxsp_spxx_test0914.php';
-const leaveAPI =
-  'https://we.cqupt.edu.cn/api/lxsp/post_lxsp_sm_test20210311.php';
-const listAPI =
-  'https://we.cqupt.edu.cn/api/lxsp/get_lxsp_list_gxw20210316.php';
-const options = {
-  headers: {
-    'User-Agent':
-      'Mozilla/5.0 (Linux; Android 6.0.1; MuMu Build/V417IR; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/52.0.2743.100 Safari/537.36 MMWEBID/4360 MicroMessenger/7.0.22.1820(0x27001636) Process/appbrand2 WeChat/arm32 Weixin Android Tablet NetType/WIFI Language/zh_CN ABI/arm64 MiniProgramEnv/android',
-    'content-type': 'application/json',
-  },
-};
+import {apply, leave, getList} from './api';
 
 const initialInfo = {
   nj: '2019',
@@ -36,13 +23,7 @@ async function applyLeaveSchool(name: string) {
     wcrq: getTodayDate(),
     timestamp: getNowTimestamp(),
   };
-  const {data} = await axios.post(
-    applyAPI,
-    {
-      key: Buffer.from(JSON.stringify(requestData)).toString('base64'),
-    },
-    options
-  );
+  const {data} = await apply(requestData);
   if (data.status === 200) {
     return '申请成功';
   } else {
@@ -63,19 +44,7 @@ async function leaveSchool(name: string) {
     openid: infos[name].info.openid,
     xh: infos[name].info.xh,
   };
-  const {data: listData} = await axios.post(
-    listAPI,
-    {
-      key: Buffer.from(
-        JSON.stringify({
-          ...userInfo,
-          page: '1',
-          timestamp: getNowTimestamp(),
-        })
-      ).toString('base64'),
-    },
-    options
-  );
+  const {data: listData} = await getList(userInfo);
 
   const requestData = {
     ...chu,
@@ -83,13 +52,7 @@ async function leaveSchool(name: string) {
     log_id: listData.data.result[0].log_id,
   };
 
-  const {data} = await axios.post(
-    leaveAPI,
-    {
-      key: Buffer.from(JSON.stringify(requestData)).toString('base64'),
-    },
-    options
-  );
+  const {data} = await leave(requestData);
   if (data.status === 200) {
     return '离校成功';
   } else {

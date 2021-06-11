@@ -13,8 +13,6 @@ const options = {
 };
 
 function checkIn() {
-  console.log('checkin');
-
   zscyAccounts.forEach(async account => {
     const {data} = await axios.post(checkInAPI, account, options);
     switch (data.status) {

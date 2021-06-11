@@ -19,7 +19,7 @@ const options = {
   },
 };
 
-const initalInfo = {
+const initialInfo = {
   nj: '2019',
   qjsy: '1',
   wcxxdd: '1',
@@ -32,7 +32,7 @@ async function applyLeaveSchool(name: string) {
   if (Object.keys(infos).includes(name)) {
     const requestData = {
       ...infos[name],
-      ...initalInfo,
+      ...initialInfo,
       yjfxsj: getTodayDate(),
       wcrq: getTodayDate(),
       timestamp: getNowTimestamp(),

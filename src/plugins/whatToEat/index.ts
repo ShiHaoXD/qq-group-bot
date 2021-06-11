@@ -9,7 +9,7 @@ function genWhatToEat(foods: Food[]) {
   return `${food.type} ${food.restaurants[restaurantsIndex]}`;
 }
 
-function check(msg: string, sender: any) {
+function check(msg: string, sender: (msg: string) => void) {
   const whatToEatRegex = /^吃什么$/;
   const whatNeverEatRegex = /^什么没吃过$/;
   if (whatToEatRegex.test(msg)) {

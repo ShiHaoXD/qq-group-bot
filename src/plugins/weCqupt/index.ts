@@ -105,7 +105,7 @@ async function leaveSchool(name: string) {
   }
 }
 
-async function check(msg: string, sender: any) {
+async function check(msg: string, sender: (msg: string) => void) {
   const regex = /申请 [\S]*/;
   const regexLeave = /[出离]校 [\S]*/;
   if (regex.test(msg)) {

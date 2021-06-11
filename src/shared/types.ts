@@ -17,3 +17,12 @@ export interface ZscyAccount {
   readonly stunum: string; // 账号
   readonly idnum: string; // 密码
 }
+
+export interface StudentInfo {
+  [name: string]: {
+    xh: string;
+    name: string;
+    xy: string;
+    openid: string;
+  };
+}

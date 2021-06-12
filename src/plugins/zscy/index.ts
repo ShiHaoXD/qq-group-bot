@@ -16,7 +16,7 @@ function checkIn() {
         } = statusData;
         if (status === 200) {
           helper.sendMsg(
-            `${account.stunum} 签到成功\n今日排名第 ${rank}名\n已连续签到${check_in_days}天，超越了${percent}的人`
+            `${account.stunum} 签到成功\n今日第${rank}位签到\n已连续签到${check_in_days}天，超过${percent}的邮子`
           );
         }
         break;

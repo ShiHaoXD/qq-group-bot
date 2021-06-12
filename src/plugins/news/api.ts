@@ -27,6 +27,7 @@ export const getWhatHappenedToTheWorld = async () => {
   await page.waitForSelector('.Content__TruncateContainer-sc-10t82py-0');
   const result = await page.evaluate(() => {
     const result: string[] = [];
+    result.push('一觉醒来世界发生了什么');
     const container = document.querySelector(
       '.Content__TruncateContainer-sc-10t82py-0'
     )!;

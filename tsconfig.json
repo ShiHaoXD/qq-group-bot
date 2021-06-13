@@ -4,7 +4,6 @@
     "target": "ESNEXT",
     "rootDir": "./src",
     "outDir": "build",
-    "allowSyntheticDefaultImports": true,
     "lib": ["DOM.Iterable", "DOM", "ESNext"]
   },
   "include": ["src/**/*.ts"]

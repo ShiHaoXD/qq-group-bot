@@ -1,6 +1,6 @@
 import {GroupMessageEventData} from 'oicq';
-import {bot, groupID, helper} from '../bot';
-import {Plugin} from '../shared/types';
+import {bot, groupID, helper} from '../../bot';
+import {Plugin} from '../../shared/types';
 
 const recentMessages: GroupMessageEventData[] = [];
 const canRepeatTimes = 5;

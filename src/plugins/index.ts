@@ -5,6 +5,7 @@ import banForRepeat from './banForRepeat';
 import replyKeyword from './replyKeyword';
 import recallKeyword from './recallKeyword';
 import zscy from './zscy';
+import jwzx from './jwzx';
 export const plugins = [
   news,
   weCqupt,
@@ -13,4 +14,5 @@ export const plugins = [
   replyKeyword,
   recallKeyword,
   zscy,
+  jwzx,
 ];

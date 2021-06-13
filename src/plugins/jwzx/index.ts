@@ -19,7 +19,7 @@ async function JwzxNews() {
 }
 
 function install() {
-  scheduleJob('0 0 0 * * *', JwzxNews);
+  scheduleJob('0 0 * * * *', JwzxNews);
 }
 
 const plugin: Plugin = {

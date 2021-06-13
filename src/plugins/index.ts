@@ -6,6 +6,7 @@ import replyKeyword from './replyKeyword';
 import recallKeyword from './recallKeyword';
 import zscy from './zscy';
 import jwzx from './jwzx';
+import greet from './greet';
 export const plugins = [
   news,
   weCqupt,
@@ -15,4 +16,5 @@ export const plugins = [
   recallKeyword,
   zscy,
   jwzx,
+  greet,
 ];

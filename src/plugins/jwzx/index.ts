@@ -8,7 +8,7 @@ const readedNewsID: string[] = [];
 async function JwzxNews() {
   const {data} = await getJwzxNews(1);
   const result: string[] = [];
-  result.push('教务在线新闻:\n');
+  result.push('教务在线新闻:');
   data.data.forEach((e: any, index: number) => {
     if (!readedNewsID.includes(e.id)) {
       readedNewsID.push(e.id);

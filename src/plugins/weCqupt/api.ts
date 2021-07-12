@@ -1,5 +1,6 @@
 import {getNowTimestamp} from '../../shared/date';
 import {createAxiosInstance} from '../../shared/http';
+import {json2base64} from '../../shared/utils';
 
 const baseURL = 'https://we.cqupt.edu.cn/api';
 const headers = {
@@ -12,21 +13,24 @@ const {post} = createAxiosInstance(baseURL, headers);
 
 export const apply = (data: any) =>
   post('/lxsp/post_lxsp_spxx_test0914.php', {
-    key: Buffer.from(JSON.stringify(data)).toString('base64'),
+    key: json2base64(data),
   });
 
 export const leave = (data: any) =>
   post('/lxsp/post_lxsp_sm_test20210311.php', {
-    key: Buffer.from(JSON.stringify(data)).toString('base64'),
+    key: json2base64(data),
   });
 
 export const getList = (data: any) =>
   post('/lxsp/get_lxsp_list_gxw20210316.php', {
-    key: Buffer.from(
-      JSON.stringify({
-        ...data,
-        page: '1',
-        timestamp: getNowTimestamp(),
-      })
-    ).toString('base64'),
+    key: json2base64({
+      ...data,
+      page: '1',
+      timestamp: getNowTimestamp(),
+    }),
+  });
+
+export const getClockinStatus = (data: any) =>
+  post('/mrdk/get_mrdk_flag.php', {
+    key: json2base64(data),
   });

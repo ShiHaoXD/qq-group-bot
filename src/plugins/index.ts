@@ -7,6 +7,7 @@ import news from './news';
 // import zscy from './zscy';
 // import jwzx from './jwzx';
 // import greet from './greet';
+// import weather from './weather';
 export const plugins = [
   news,
   // weCqupt,
@@ -17,4 +18,5 @@ export const plugins = [
   // zscy,
   // jwzx,
   // greet,
+  // weather,
 ];

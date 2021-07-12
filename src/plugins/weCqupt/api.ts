@@ -1,6 +1,7 @@
 import {getNowTimestamp} from '../../shared/date';
 import {createAxiosInstance} from '../../shared/http';
 import {json2base64} from '../../shared/utils';
+import axios from 'axios';
 
 const baseURL = 'https://we.cqupt.edu.cn/api';
 const headers = {
@@ -32,5 +33,18 @@ export const getList = (data: any) =>
 
 export const getClockinStatus = (data: any) =>
   post('/mrdk/get_mrdk_flag.php', {
+    key: json2base64(data),
+  });
+
+export const getLocation = (address: string) =>
+  axios.get('https://apis.map.qq.com/ws/geocoder/v1/', {
+    params: {
+      address,
+      key: 'PULBZ-BSEWU-MAEVV-2IAJR-ZCAS3-53F4O',
+    },
+  });
+
+export const clockin = (data: any) =>
+  post('/mrdk/post_mrdk_info.php', {
     key: json2base64(data),
   });

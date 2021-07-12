@@ -14,3 +14,6 @@ export const getNowTimeString = () =>
       hour12: false,
     }
   )}`;
+
+// 获取北京时间
+export const getLocalTime = () => new Date(Date.now() + 8 * 60 * 60 * 1000);

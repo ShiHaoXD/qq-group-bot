@@ -5,7 +5,7 @@
   "license": "MIT",
   "author": "Cansiny0320",
   "scripts": {
-    "start": "yarn fix && yarn clean && yarn compile && pm2 start build/index.js --name=bot",
+    "start": "npm  fix && npm clean && npm compile && pm2 start build/index.js --name=bot",
     "dev": "nodemon ./src/index.ts",
     "stop": "pm2 stop bot",
     "log": "pm2 logs bot",

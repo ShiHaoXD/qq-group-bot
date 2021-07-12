@@ -17,12 +17,26 @@
 
 ## 使用
 
-```
-$ yarn
+1. 首先在根目录新建 `.env` 文件
 
-$ yarn start
-```
+   ```tex
+   ACCOUNT = 123456 # 机器人的 QQ 号，该 QQ 号不可以使用机器人功能！
+   PASS_WORD = 'password' # 密码
+   GROUP_ID = 123456 # QQ 群号
+   ```
 
-## ❗ tips
+2. 在`src/plugins/index.ts`文件选择你需要的插件（取消导入插件的注释即可），插件目录下有配置文件，需自己修改`config.example.ts`，如果需要上传`GitHub`等网站，可将配置文件修改命名为`config.private.ts`，并将该插件目录下的其余文件中的`example`关键字全部改为`private`（使用全局替换）
 
-涉及到隐私信息的配置在 `config.private.ts` 文件，未上传到 git，可以按照 `config.example.ts` 的格式自己新建
+3. 配置好后，执行安装命令
+
+   ```shell
+   yarn
+
+   yarn start
+
+   # 或者使用 npm
+
+   npm i
+
+   npm start
+   ```

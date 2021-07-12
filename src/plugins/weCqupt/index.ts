@@ -3,7 +3,7 @@ import {GroupMessageEventData, PrivateMessageEventData} from 'oicq';
 import {bot, helper, groupID} from '../../bot';
 import {getLocalTime, getNowTimestamp, getTodayDate} from '../../shared/date';
 import {Plugin} from '../../shared/types';
-import {infos} from './config.private';
+import {infos} from './config.example';
 import {
   apply,
   leave,

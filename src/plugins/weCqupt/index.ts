@@ -16,8 +16,12 @@ const initialInfo = {
 };
 
 async function applyLeaveSchool(name: string) {
+  const {xh, xy, openid} = infos[name].info;
   const requestData = {
-    ...infos[name].info,
+    xh,
+    name,
+    xy,
+    openid,
     ...initialInfo,
     yjfxsj: getTodayDate(),
     wcrq: getTodayDate(),
@@ -32,6 +36,7 @@ async function applyLeaveSchool(name: string) {
 }
 
 async function leaveSchool(name: string) {
+  const {openid, xh} = infos[name].info;
   const chu = {
     type: '出校',
     version: '1.1',
@@ -41,8 +46,8 @@ async function leaveSchool(name: string) {
     timestamp: getNowTimestamp(),
   };
   const userInfo = {
-    openid: infos[name].info.openid,
-    xh: infos[name].info.xh,
+    openid,
+    xh,
   };
   const {data: listData} = await getList(userInfo);
 

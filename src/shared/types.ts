@@ -25,6 +25,8 @@ export interface StudentInfo {
       name: string;
       xy: string;
       openid: string;
+      address: string;
+      gender: string;
     };
     owner_id: number;
   };

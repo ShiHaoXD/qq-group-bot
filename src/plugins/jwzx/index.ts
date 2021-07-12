@@ -3,18 +3,20 @@ import {helper} from '../../bot';
 import {Plugin} from '../../shared/types';
 import {getJwzxNews} from './api';
 
-const readedNewsID: string[] = [];
+const readedNews = new Map<string, string>();
 
 async function JwzxNews() {
-  const {data} = await getJwzxNews(1);
+  const {
+    data: {data: list},
+  } = await getJwzxNews(1);
   const result: string[] = [];
   result.push('教务在线新闻:');
-  data.data.forEach((e: any, index: number) => {
-    if (!readedNewsID.includes(e.id)) {
-      readedNewsID.push(e.id);
-      result.push(`${index + 1}、${e.title}`);
-    }
-  });
+  for (const e of list) {
+    if (!readedNews.has(e.id)) {
+      readedNews.set(e.id, e.title);
+      result.push(`${e.title}`);
+    } else break;
+  }
   result.length > 1 && helper.sendMsg(result.join('\n'));
 }
 

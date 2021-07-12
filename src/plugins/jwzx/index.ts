@@ -11,10 +11,11 @@ async function JwzxNews() {
   } = await getJwzxNews(1);
   const result: string[] = [];
   result.push('教务在线新闻:');
-  for (const e of list) {
+  for (let i = 0; i < list.length; i++) {
+    const e = list[i];
     if (!readedNews.has(e.id)) {
       readedNews.set(e.id, e.title);
-      result.push(`${e.title}`);
+      result.push(`${i + 1} ${e.title}`);
     } else break;
   }
   result.length > 1 && helper.sendMsg(result.join('\n'));

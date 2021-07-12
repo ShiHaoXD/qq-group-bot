@@ -70,11 +70,13 @@ async function check(
   if (regex.test(msg) || regexLeave.test(msg)) {
     const name = msg.split(' ')[1];
     if (Object.keys(infos).includes(name)) {
-      infos[name].owner_id === user_id
-        ? regex.test(msg)
+      if (infos[name].owner_id === user_id) {
+        regex.test(msg)
           ? sender(await applyLeaveSchool(name))
-          : sender(await leaveSchool(name))
-        : sender('你不是该账号拥有者，无法申请');
+          : sender(await leaveSchool(name));
+      } else {
+        sender('你不是该账号拥有者，无法申请');
+      }
     } else {
       sender('没有你的数据 请联系管理员添加');
     }

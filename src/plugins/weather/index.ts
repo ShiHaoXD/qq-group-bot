@@ -16,7 +16,7 @@ async function weatherForecast() {
 }
 
 function install() {
-  scheduleJob('* */6 * * *', weatherForecast);
+  scheduleJob('0 */6 * * *', weatherForecast);
 }
 
 const plugin: Plugin = {

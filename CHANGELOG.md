@@ -1,3 +1,26 @@
+# [1.3.0](https://github.com/Cansiny0320/qq-group-bot/compare/v1.2.0...v1.3.0) (2021-07-19)
+
+
+### Bug Fixes
+
+* 错误导入 ([8dd306a](https://github.com/Cansiny0320/qq-group-bot/commit/8dd306afa8f7c853d45943a2eef050e9640651fc))
+* 修复 linux 下 puppeteer 不能正常运行的问题 ([480e338](https://github.com/Cansiny0320/qq-group-bot/commit/480e338901c625a02803735ebfad33d4de4e5bea))
+* 修复天气预报执行时间 ([1949d76](https://github.com/Cansiny0320/qq-group-bot/commit/1949d760a5923ac12716d259e2cbe55d80441a3b))
+
+
+### Features
+
+* 抽离api ([acb96a0](https://github.com/Cansiny0320/qq-group-bot/commit/acb96a0b2819c96ec67c3f0081b28a0b0880c41a))
+* 封装axios方法 ([c9a7e63](https://github.com/Cansiny0320/qq-group-bot/commit/c9a7e63829c3fdf1a0239ce320c03670bfa45975))
+* 教务在线新闻 ([850d366](https://github.com/Cansiny0320/qq-group-bot/commit/850d366242c789cfe425afc819558485ee065aaf))
+* 每日健康打卡 ([cb16f4d](https://github.com/Cansiny0320/qq-group-bot/commit/cb16f4da5e3902ee0a2ef0fc24455f3eed08985f))
+* 天气预报 ([da12696](https://github.com/Cansiny0320/qq-group-bot/commit/da126966ec190389ce4e93b5a7985ba2bf657a77))
+* 一觉醒来发生了什么功能 ([b70c4c0](https://github.com/Cansiny0320/qq-group-bot/commit/b70c4c0ba271b7f4ef909ddbc8b9e9f3c3a584f4))
+* 增加新闻序号 ([94ee90e](https://github.com/Cansiny0320/qq-group-bot/commit/94ee90e4997bb57061e4a891b242eea0cb6f3fbe))
+* greet 插件 ([6a67658](https://github.com/Cansiny0320/qq-group-bot/commit/6a676585dcafb51d766f73df777d634657983136))
+
+
+
 # [1.2.0](https://github.com/Cansiny0320/qq-group-bot/compare/v1.1.0...v1.2.0) (2021-06-11)
 
 

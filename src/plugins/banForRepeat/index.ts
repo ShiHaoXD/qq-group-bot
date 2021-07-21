@@ -2,10 +2,10 @@ import {GroupMessageEventData} from 'oicq';
 import {bot, groupID, helper} from '../../bot';
 import {Plugin} from '../../shared/types';
 
-const recentMessages: GroupMessageEventData[] = [];
+let recentMessages: GroupMessageEventData[] = [];
 const canRepeatTimes = 5;
 const banTimeLimit = 5;
-function banForRepeat(recentMessages: GroupMessageEventData[]) {
+function banForRepeat() {
   recentMessages = recentMessages.map(e => {
     if (e.raw_message.startsWith('[CQ:')) {
       e.raw_message = e.raw_message.split(',')[1];
@@ -29,7 +29,7 @@ function listener(data: GroupMessageEventData) {
 
   if (recentMessages.length > canRepeatTimes) {
     recentMessages.shift();
-    banForRepeat(recentMessages);
+    banForRepeat();
   }
 }
 

@@ -6,9 +6,9 @@ import {getWeather} from './api';
 async function weatherForecast() {
   const {data} = await getWeather();
   if (data.code === '200') {
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 2; i++) {
       if (data.hourly[i].text.includes('雨')) {
-        helper.sendMsg('未来六小时内有雨，记得带伞');
+        helper.sendMsg('未来两小时内有雨，记得带伞');
         break;
       }
     }
@@ -16,7 +16,7 @@ async function weatherForecast() {
 }
 
 function install() {
-  scheduleJob('0 */6 * * *', weatherForecast);
+  scheduleJob('0 */2 * * *', weatherForecast);
 }
 
 const plugin: Plugin = {

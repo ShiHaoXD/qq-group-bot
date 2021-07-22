@@ -208,10 +208,10 @@
   resolved "https://registry.nlark.com/@types/node/download/@types/node-15.12.2.tgz#1f2b42c4be7156ff4a6f914b2fb03d05fa84e38d"
   integrity sha1-HytCxL5xVv9Kb5FLL7A9BfqE440=
 
-"@types/node@^16.3.1":
-  version "16.3.1"
-  resolved "https://registry.nlark.com/@types/node/download/@types/node-16.3.1.tgz?cache=0&sync_timestamp=1625868760137&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fnode%2Fdownload%2F%40types%2Fnode-16.3.1.tgz#24691fa2b0c3ec8c0d34bfcfd495edac5593ebb4"
-  integrity sha1-JGkforDD7IwNNL/P1JXtrFWT67Q=
+"@types/node@^16.4.0":
+  version "16.4.0"
+  resolved "https://registry.nlark.com/@types/node/download/@types/node-16.4.0.tgz?cache=0&sync_timestamp=1626816768699&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fnode%2Fdownload%2F%40types%2Fnode-16.4.0.tgz#2c219eaa3b8d1e4d04f4dd6e40bc68c7467d5272"
+  integrity sha1-LCGeqjuNHk0E9N1uQLxox0Z9UnI=
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
@@ -1928,11 +1928,6 @@ isexe@^2.0.0:
   resolved "https://registry.npm.taobao.org/isexe/download/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
   integrity sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=
 
-jce@^0.2.3:
-  version "0.2.3"
-  resolved "https://registry.nlark.com/jce/download/jce-0.2.3.tgz#891b8f8c88642c328f2629a3a82c7a7d5de29e05"
-  integrity sha1-iRuPjIhkLDKPJimjqCx6fV3ingU=
-
 js-git@^0.7.8:
   version "0.7.8"
   resolved "https://registry.npm.taobao.org/js-git/download/js-git-0.7.8.tgz#52fa655ab61877d6f1079efc6534b554f31e5444"
@@ -2402,12 +2397,11 @@ object-keys@^1.0.12:
   resolved "https://registry.npm.taobao.org/object-keys/download/object-keys-1.1.1.tgz#1c47f272df277f3b1daf061677d9c82e2322c60e"
   integrity sha1-HEfyct8nfzsdrwYWd9nILiMixg4=
 
-oicq@^1.17.3:
-  version "1.17.3"
-  resolved "https://registry.nlark.com/oicq/download/oicq-1.17.3.tgz#892e9d51313edc6cddabb223a24ded59c4d5ad4b"
-  integrity sha1-iS6dUTE+3Gzdq7Ijok3tWcTVrUs=
+oicq@^1.18.0:
+  version "1.18.0"
+  resolved "https://registry.nlark.com/oicq/download/oicq-1.18.0.tgz#ea45f36238be5af9ad5894728f8e5bc8e2398d3e"
+  integrity sha1-6kXzYji+WvmtWJRyj45byOI5jT4=
   dependencies:
-    jce "^0.2.3"
     log4js "^6.3.0"
     long "^4.0.0"
     probe-image-size "^7.2.0"

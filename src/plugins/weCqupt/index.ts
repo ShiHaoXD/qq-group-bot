@@ -162,15 +162,14 @@ async function check(
       sender('没有你的数据 请联系管理员添加');
     }
   } else if (['出校', '离校', '申请'].includes(msg)) {
-    Object.keys(infos).some(async key => {
+    Object.keys(infos).forEach(async key => {
       if (user_id === infos[key].owner_id) {
         msg === '申请'
           ? sender(await applyLeaveSchool(key))
           : sender(await leaveSchool(key));
-        return true;
       }
-      return false;
     });
+  }
 }
 async function healthClockin(name: string) {
   try {

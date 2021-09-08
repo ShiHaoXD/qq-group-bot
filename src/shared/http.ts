@@ -11,7 +11,7 @@ export const createAxiosInstance = (baseURL: string, headers: any) => {
     try {
       return instance.get(url, {params});
     } catch (error) {
-      throw new Error(error);
+      throw new Error(error + '');
     }
   }
 
@@ -19,7 +19,7 @@ export const createAxiosInstance = (baseURL: string, headers: any) => {
     try {
       return instance.post(url, data, config);
     } catch (error) {
-      throw new Error(error);
+      throw new Error(error + '');
     }
   }
   return {

@@ -15,7 +15,7 @@ async function JwzxNews() {
     const e = list[i];
     if (!readedNews.has(e.id)) {
       readedNews.set(e.id, e.title);
-      result.push(`${i + 1} ${e.title}`);
+      result.push(`${i + 1}. ${e.title}`);
     } else break;
   }
   result.length > 1 && helper.sendMsg(result.join('\n'));

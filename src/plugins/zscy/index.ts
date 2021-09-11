@@ -1,6 +1,6 @@
 import {Plugin} from '../../shared/types';
 import {scheduleJob} from 'node-schedule';
-import {zscyAccounts} from './config.private';
+import {zscyAccounts} from './config.example';
 import {helper} from '../../bot';
 import {checkIn as checkInAPI, getCheckInStatus} from './api';
 

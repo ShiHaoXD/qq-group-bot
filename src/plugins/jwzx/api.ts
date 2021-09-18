@@ -1,6 +1,6 @@
 import {createAxiosInstance} from '../../shared/http';
 
-const baseURL = 'https://be-prod.redrock.team/magipoke-jwzx';
+const baseURL = 'https://be-prod.redrock.cqupt.edu.cn/magipoke-jwzx';
 
 const headers = {
   'content-type': 'application/json',

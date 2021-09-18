@@ -1,6 +1,6 @@
 import {createAxiosInstance} from '../../shared/http';
 import {stringify} from 'qs';
-const baseURL = 'https://be-prod.redrock.team/magipoke-intergral/QA';
+const baseURL = 'https://be-prod.redrock.cqupt.edu.cn/magipoke-intergral/QA';
 const headers = {
   'Content-Type': 'application/x-www-form-urlencoded',
 };

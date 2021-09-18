@@ -24,20 +24,12 @@ export const getWhatHappenedToTheWorld = async () => {
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36'
   );
   await page.goto('https://web.okjike.com/topic/553870e8e4b0cafb0a1bef68');
-  await page.waitForSelector('.Content__TruncateContainer-sc-10t82py-0');
+  await page.waitForSelector('.content_truncate__1z0HR');
   const result = await page.evaluate(() => {
-    const result: string[] = [];
-    result.push('一觉醒来世界发生了什么');
-    const container = document.querySelector(
-      '.Content__TruncateContainer-sc-10t82py-0'
+    const container: HTMLElement = document.querySelector(
+      '.content_truncate__1z0HR'
     )!;
-    const spans = container.querySelectorAll('span');
-    spans.forEach((e, index) => {
-      if (/[0-9]+./.test(e.textContent as string) || index === 0) {
-        result.push(e.textContent as string);
-      }
-    });
-    return result.join('\n');
+    return '一觉醒来世界发生了什么\n' + container.innerText;
   });
   await browser.close();
   return result;

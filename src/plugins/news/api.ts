@@ -1,6 +1,6 @@
 import axios from 'axios';
 import cheerio from 'cheerio';
-import {launch} from 'puppeteer';
+import * as puppeteer from 'puppeteer';
 import {getNowTimeString} from '../../shared/date';
 const API = 'https://s.weibo.com/top/summary?cate=realtimehot';
 
@@ -18,7 +18,7 @@ export const getWeiboHotNews = async () => {
 };
 
 export const getWhatHappenedToTheWorld = async () => {
-  const browser = await launch({args: ['--no-sandbox']});
+  const browser = await puppeteer.launch({args: ['--no-sandbox']});
   const page = await browser.newPage();
   await page.setUserAgent(
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36'

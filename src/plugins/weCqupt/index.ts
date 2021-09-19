@@ -14,6 +14,8 @@ import {
 } from './api';
 import {scheduleJob} from 'node-schedule';
 
+let clockinSwitch = true;
+
 const dateCode = [
   's9ZS',
   'jQkB',
@@ -148,6 +150,7 @@ async function check(
 ) {
   const regex = /申请 [\S]*/;
   const regexLeave = /[出离]校 [\S]*/;
+  const regexClockin = /打卡 [开关]/;
   if (regex.test(msg) || regexLeave.test(msg)) {
     const name = msg.split(' ')[1];
     if (Object.keys(infos).includes(name)) {
@@ -169,6 +172,9 @@ async function check(
           : sender(await leaveSchool(key));
       }
     });
+  } else if (regexClockin.test(msg)) {
+    const action = msg.split(' ')[1];
+    clockinSwitch = action === '开' ? true : false;
   }
 }
 async function healthClockin(name: string) {
@@ -261,8 +267,10 @@ function install() {
   bot.on('message.group', groupListener);
   bot.on('message.private', privateListener);
   scheduleJob('5 0 0 * * *', () => {
-    for (const name in infos) {
-      healthClockin(name);
+    if (clockinSwitch) {
+      for (const name in infos) {
+        healthClockin(name);
+      }
     }
   });
 }

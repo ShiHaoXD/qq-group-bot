@@ -99,10 +99,11 @@ async function applyLeaveSchool(name: string) {
     timestamp: getNowTimestamp(),
   };
   const {data} = await apply(requestData);
+
   if (data.status === 200) {
     return '申请成功';
   } else {
-    return `申请失败\n请求数据：${requestData}\n返回数据${data}`;
+    return data.message;
   }
 }
 
@@ -112,9 +113,8 @@ async function check(
   sender: (msg: string) => void
 ) {
   const regex = /申请 [\S]*/;
-  const regexLeave = /[出离]校 [\S]*/;
   const regexClockin = /打卡 [开关]/;
-  if (regex.test(msg) || regexLeave.test(msg)) {
+  if (regex.test(msg)) {
     const name = msg.split(' ')[1];
     if (Object.keys(infos).includes(name)) {
       if (infos[name].owner_id === user_id) {
@@ -125,10 +125,10 @@ async function check(
     } else {
       sender('没有你的数据 请联系管理员添加');
     }
-  } else if (['出校', '离校', '申请'].includes(msg)) {
+  } else if (msg === '申请') {
     Object.keys(infos).forEach(async key => {
       if (user_id === infos[key].owner_id) {
-        msg === '申请' && sender(await applyLeaveSchool(key));
+        sender(await applyLeaveSchool(key));
       }
     });
   } else if (regexClockin.test(msg)) {
@@ -144,8 +144,6 @@ async function healthClockin(name: string) {
       xh,
       timestamp: getNowTimestamp(),
     });
-    console.log(clockinStatus);
-
     const count = clockinStatus.data.count;
     if (count === '0') {
       const {data: locationData} = await getLocation(address);

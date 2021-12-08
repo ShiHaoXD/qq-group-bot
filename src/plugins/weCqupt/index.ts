@@ -4,14 +4,7 @@ import {bot, helper, groupID} from '../../bot';
 import {getLocalTime, getNowTimestamp, getTodayDate} from '../../shared/date';
 import {Plugin} from '../../shared/types';
 import {infos} from './config.example';
-import {
-  apply,
-  leave,
-  getList,
-  getClockinStatus,
-  getLocation,
-  clockin,
-} from './api';
+import {apply, getClockinStatus, getLocation, clockin} from './api';
 import {scheduleJob} from 'node-schedule';
 
 let clockinSwitch = true;
@@ -113,36 +106,6 @@ async function applyLeaveSchool(name: string) {
   }
 }
 
-async function leaveSchool(name: string) {
-  const {openid, xh} = infos[name].info;
-  const chu = {
-    type: '出校',
-    version: '1.1',
-    location: '崇文门',
-    latitude: '',
-    longitude: '',
-    timestamp: getNowTimestamp(),
-  };
-  const userInfo = {
-    openid,
-    xh,
-  };
-  const {data: listData} = await getList(userInfo);
-
-  const requestData = {
-    ...chu,
-    ...userInfo,
-    log_id: listData.data.result[0].log_id,
-  };
-
-  const {data} = await leave(requestData);
-  if (data.status === 200) {
-    return '离校成功';
-  } else {
-    return `离校失败\n请求数据：${requestData}\n返回数据${data}`;
-  }
-}
-
 async function check(
   user_id: number,
   msg: string,
@@ -155,9 +118,7 @@ async function check(
     const name = msg.split(' ')[1];
     if (Object.keys(infos).includes(name)) {
       if (infos[name].owner_id === user_id) {
-        regex.test(msg)
-          ? sender(await applyLeaveSchool(name))
-          : sender(await leaveSchool(name));
+        regex.test(msg) && sender(await applyLeaveSchool(name));
       } else {
         sender('你不是该账号拥有者，无法申请');
       }
@@ -167,9 +128,7 @@ async function check(
   } else if (['出校', '离校', '申请'].includes(msg)) {
     Object.keys(infos).forEach(async key => {
       if (user_id === infos[key].owner_id) {
-        msg === '申请'
-          ? sender(await applyLeaveSchool(key))
-          : sender(await leaveSchool(key));
+        msg === '申请' && sender(await applyLeaveSchool(key));
       }
     });
   } else if (regexClockin.test(msg)) {

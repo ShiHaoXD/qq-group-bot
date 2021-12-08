@@ -13,17 +13,12 @@ const headers = {
 const {post} = createAxiosInstance(baseURL, headers);
 
 export const apply = (data: any) =>
-  post('/lxsp/post_lxsp_spxx_test0914.php', {
-    key: json2base64(data),
-  });
-
-export const leave = (data: any) =>
-  post('/lxsp/post_lxsp_sm_test20210311.php', {
+  post('/lxsp_new/post_lxsp_spxx.php', {
     key: json2base64(data),
   });
 
 export const getList = (data: any) =>
-  post('/lxsp/get_lxsp_list_gxw20210316.php', {
+  post('/lxsp_new/get_lxsp_list.php', {
     key: json2base64({
       ...data,
       page: '1',

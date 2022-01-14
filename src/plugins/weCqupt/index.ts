@@ -40,7 +40,7 @@ async function check(
     });
   } else if (regexClockin.test(msg)) {
     const action = msg.split(' ')[1];
-    clockinSwitch = action === '开' ? true : false;
+    clockinSwitch = action === '开';
   }
 }
 

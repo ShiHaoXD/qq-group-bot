@@ -1,4 +1,3 @@
-import {getNowTimestamp} from '../../shared/date';
 import {createAxiosInstance} from '../../shared/http';
 import {json2base64} from '../../shared/utils';
 import axios from 'axios';
@@ -12,18 +11,61 @@ const headers = {
 
 const {post} = createAxiosInstance(baseURL, headers);
 
-export const apply = (data: any) =>
+type studentInfo = {
+  nj: string;
+  name: string;
+  xy: string;
+  xh: string;
+};
+
+type applyBaseParams = {
+  qjsy: string;
+  wcxxdd: string;
+  wcmdd: string;
+  qjlx: string;
+  beizhu: string;
+};
+
+type baseParams = {
+  timestamp: number;
+  openid: string;
+};
+
+type ApplyParams = {
+  yjfxsj: string;
+  wcrq: string;
+} & studentInfo &
+  applyBaseParams &
+  baseParams;
+
+type GetListParams = {
+  page?: string;
+  xh: string;
+} & baseParams;
+
+type LeaveOrBackParams = {
+  type: string;
+  location: string;
+  latitude: string;
+  longitude: string;
+  log_id: string;
+  version: string;
+  xh: string;
+} & baseParams;
+
+export const apply = (data: ApplyParams) =>
   post('/lxsp_new/post_lxsp_spxx.php', {
     key: json2base64(data),
   });
 
-export const getList = (data: any) =>
-  post('/lxsp_new/get_lxsp_list.php', {
-    key: json2base64({
-      ...data,
-      page: '1',
-      timestamp: getNowTimestamp(),
-    }),
+export const getList = (data: GetListParams) =>
+  post('/lxsp_new/get_lxsp_student_list.php', {
+    key: json2base64(data),
+  });
+
+export const leaveOrBack = (data: LeaveOrBackParams) =>
+  post('/lxsp_new/post_lxsp_sm.php`', {
+    key: json2base64(data),
   });
 
 export const getClockinStatus = (data: any) =>

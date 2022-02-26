@@ -4,7 +4,14 @@
     "target": "ESNEXT",
     "rootDir": "./src",
     "outDir": "build",
-    "lib": ["DOM.Iterable", "DOM", "ESNext"]
+    "lib": [
+      "DOM.Iterable",
+      "DOM",
+      "ESNext"
+    ],
+    "esModuleInterop": true
   },
-  "include": ["src/**/*.ts"]
+  "include": [
+    "src/**/*.ts"
+  ]
 }

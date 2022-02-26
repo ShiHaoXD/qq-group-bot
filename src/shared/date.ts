@@ -1,19 +1,10 @@
-export const getTodayDate = () =>
-  new Date()
-    .toLocaleDateString('zh-CN')
-    .split('/')
-    .map(e => e.padStart(2, '0'))
-    .join('-');
+import dayjs from 'dayjs'
 
-export const getNowTimestamp = () => Math.round(+new Date() / 1000);
+export const getTodayDate = () => dayjs().format('YYYY-MM-DD')
 
-export const getNowTimeString = () =>
-  `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString(
-    'chinese',
-    {
-      hour12: false,
-    }
-  )}`;
+export const getNowTimestamp = () => dayjs().unix()
+
+export const getNowTimeString = () => dayjs().format('YYYY-MM-DD HH:mm:ss')
 
 // 获取北京时间
 export const getLocalTime = () => new Date(Date.now() + 8 * 60 * 60 * 1000);

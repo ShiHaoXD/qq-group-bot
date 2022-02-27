@@ -1,30 +1,47 @@
-import {createClient} from 'oicq';
+import {Client, createClient} from 'oicq';
 import Helper from './Helper';
-import {config} from 'dotenv';
-config();
-export const account = parseInt(process.env.ACCOUNT!);
-export const password = process.env.PASS_WORD!;
-export const groupID = parseInt(process.env.GROUP_ID!);
+import {Plugin} from './shared/types';
 
-function createBot() {
-  const bot = createClient(account);
+type usePluginFn = (plugin: Plugin) => void;
+
+export interface Bot {
+  client: Client;
+  helper: Helper;
+  use: usePluginFn;
+}
+
+export function createBot(account: number, password: string, groupID: number) {
+  const client = createClient(account);
   //监听并输入滑动验证码ticket(同一设备只需验证一次)
-  bot.on('system.login.slider', () => {
+  client.on('system.login.slider', () => {
     process.stdin.once('data', input => {
-      bot.sliderLogin(input as unknown as string);
+      client.sliderLogin(input as unknown as string);
     });
   });
 
   //监听设备锁验证(同一设备只需验证一次)
-  bot.on('system.login.device', () => {
-    bot.logger.info('验证完成后敲击Enter继续..');
+  client.on('system.login.device', () => {
+    client.logger.info('验证完成后敲击Enter继续..');
     process.stdin.once('data', () => {
-      bot.login();
+      client.login();
     });
   });
-  bot.login(password);
-  return bot;
-}
+  client.login(password);
 
-export const bot = createBot();
-export const helper = new Helper(bot, groupID);
+  const helper = new Helper(client, groupID);
+  const use: usePluginFn = (plugin: Plugin) => {
+    helper.plugins.push(plugin);
+    const fn = (client: Client, helper: Helper) => {
+      plugin.install(client, helper);
+    };
+    fn(client, helper);
+  };
+
+  client.on('system.online', () => helper.sendMsg('bot 启动成功'));
+
+  return {
+    client,
+    helper,
+    use,
+  };
+}

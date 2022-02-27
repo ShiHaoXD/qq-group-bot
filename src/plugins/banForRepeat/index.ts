@@ -1,11 +1,11 @@
 import {GroupMessageEventData} from 'oicq';
-import {bot, groupID, helper} from '../../bot';
-import {Plugin} from '../../shared/types';
+import Helper from '../../Helper';
+import {installFn, Plugin} from '../../shared/types';
 
 let recentMessages: GroupMessageEventData[] = [];
 const canRepeatTimes = 5;
 const banTimeLimit = 5;
-function banForRepeat() {
+function banForRepeat(helper: Helper) {
   recentMessages = recentMessages.map(e => {
     if (e.raw_message.startsWith('[CQ:')) {
       e.raw_message = e.raw_message.split(',')[1];
@@ -22,23 +22,22 @@ function banForRepeat() {
   }
 }
 
-function listener(data: GroupMessageEventData) {
+function listener(data: GroupMessageEventData, helper: Helper) {
   const {group_id} = data;
-  if (groupID !== group_id) return;
+  if (helper.groupID !== group_id) return;
   recentMessages.push(data);
 
   if (recentMessages.length > canRepeatTimes) {
     recentMessages.shift();
-    banForRepeat();
+    banForRepeat(helper);
   }
 }
 
-function install() {
-  bot.on('message.group', listener);
-}
+const install: installFn = (client, helper) => {
+  client.on('message.group', data => listener(data, helper));
+};
 
-const plugin: Plugin = {
-  name: 'banForRepeat',
+export const BanForRepeat: Plugin = {
+  name: '复读禁言',
   install,
 };
-export default plugin;

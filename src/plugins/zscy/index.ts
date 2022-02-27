@@ -1,10 +1,10 @@
-import {Plugin} from '../../shared/types';
+import {installFn, Plugin} from '../../shared/types';
 import {scheduleJob} from 'node-schedule';
 import {zscyAccounts} from './config.example';
-import {helper} from '../../bot';
 import {checkIn as checkInAPI, getCheckInStatus} from './api';
+import Helper from '../../Helper';
 
-function checkIn() {
+function checkIn(helper: Helper) {
   zscyAccounts.forEach(async account => {
     const {data} = await checkInAPI(account);
     switch (data.status) {
@@ -25,14 +25,11 @@ function checkIn() {
   });
 }
 
-function install() {
-  // 每天0点过1秒
-  scheduleJob('1 0 0 * * *', checkIn);
-}
-
-const plugin: Plugin = {
-  name: 'zscy',
-  install,
+const install: installFn = (_, helper) => {
+  scheduleJob('1 0 0 * * *', () => checkIn(helper));
 };
 
-export default plugin;
+export const HandleCqupt: Plugin = {
+  name: '掌邮',
+  install,
+};

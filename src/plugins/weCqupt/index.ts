@@ -1,12 +1,12 @@
 import {GroupMessageEventData, PrivateMessageEventData} from 'oicq';
-
-import {bot, helper, groupID} from '../../bot';
-import {Plugin} from '../../shared/types';
-import {infos} from './config.example';
+import {installFn, Plugin} from '../../shared/types';
 import healthClockin from './healthClockin';
 import {scheduleJob} from 'node-schedule';
 import {applyLeaveSchool, leaveOrBackSchool} from './free';
 import {LEAVE_OR_BACK_TYPE} from './constants';
+import Helper from '../../Helper';
+import {infos} from './config.private';
+
 let clockinSwitch = true;
 
 async function check(
@@ -45,32 +45,30 @@ async function check(
   }
 }
 
-function groupListener(data: GroupMessageEventData) {
+function groupListener(data: GroupMessageEventData, helper: Helper) {
   const {raw_message, group_id, user_id} = data;
-  if (group_id && groupID !== group_id) return;
+  if (group_id && helper.groupID !== group_id) return;
   check(user_id, raw_message, helper.sendMsg.bind(helper));
 }
 
-function privateListener(data: PrivateMessageEventData) {
+function privateListener(data: PrivateMessageEventData, helper: Helper) {
   const {raw_message, user_id} = data;
   check(user_id, raw_message, helper.sendPrivateMsg.bind(helper, user_id));
 }
 
-function install() {
-  bot.on('message.group', groupListener);
-  bot.on('message.private', privateListener);
+const install: installFn = (client, helper) => {
+  client.on('message.group', data => groupListener(data, helper));
+  client.on('message.private', data => privateListener(data, helper));
   scheduleJob('5 0 0 * * *', () => {
     if (clockinSwitch) {
       for (const name in infos) {
-        healthClockin(name);
+        healthClockin(name, helper);
       }
     }
   });
-}
+};
 
-const plugin: Plugin = {
+export const WeCqupt: Plugin = {
   name: 'weCqupt',
   install,
 };
-
-export default plugin;

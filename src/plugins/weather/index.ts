@@ -1,9 +1,9 @@
 import {scheduleJob} from 'node-schedule';
-import {helper} from '../../bot';
-import {Plugin} from '../../shared/types';
+import Helper from '../../Helper';
+import {installFn, Plugin} from '../../shared/types';
 import {getWeather} from './api';
 
-async function weatherForecast() {
+async function weatherForecast(helper: Helper) {
   const {data} = await getWeather();
   if (data.code === '200') {
     for (let i = 0; i < 2; i++) {
@@ -15,13 +15,11 @@ async function weatherForecast() {
   }
 }
 
-function install() {
-  scheduleJob('0 */2 * * *', weatherForecast);
-}
-
-const plugin: Plugin = {
-  name: 'weatherForecast',
-  install,
+const install: installFn = (_, helper) => {
+  scheduleJob('0 */2 * * *', () => weatherForecast(helper));
 };
 
-export default plugin;
+export const WeatherForecast: Plugin = {
+  name: '天气预报',
+  install,
+};

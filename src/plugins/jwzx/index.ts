@@ -1,11 +1,11 @@
 import {scheduleJob} from 'node-schedule';
-import {helper} from '../../bot';
-import {Plugin} from '../../shared/types';
+import Helper from '../../Helper';
+import {installFn, Plugin} from '../../shared/types';
 import {getJwzxNews} from './api';
 
 const readedNews = new Map<string, string>();
 
-async function JwzxNews() {
+async function JwzxNews(helper: Helper) {
   const {
     data: {data: list},
   } = await getJwzxNews(1);
@@ -21,13 +21,11 @@ async function JwzxNews() {
   result.length > 1 && helper.sendMsg(result.join('\n'));
 }
 
-function install() {
-  scheduleJob('0 0 * * * *', JwzxNews);
-}
-
-const plugin: Plugin = {
-  name: 'jwzx',
-  install,
+const install: installFn = (_, helper) => {
+  scheduleJob('0 0 * * * *', () => JwzxNews(helper));
 };
 
-export default plugin;
+export const Jwzx: Plugin = {
+  name: '教务在线',
+  install,
+};

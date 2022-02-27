@@ -1,23 +1,21 @@
 import {GroupMessageEventData} from 'oicq';
-import {bot, groupID, helper} from '../../bot';
-import {Plugin} from '../../shared/types';
+import Helper from '../../Helper';
+import {installFn, Plugin} from '../../shared/types';
 import {recallKeywords} from './config';
 
-function listener(data: GroupMessageEventData) {
+function listener(data: GroupMessageEventData, helper: Helper) {
   const {group_id, raw_message, message_id} = data;
-  if (groupID !== group_id) return;
+  if (helper.groupID !== group_id) return;
   if (recallKeywords.some(regex => regex.test(raw_message))) {
     helper.deleteMsg(message_id);
   }
 }
 
-function install() {
-  bot.on('message.group', listener);
-}
-
-const plugin: Plugin = {
-  name: 'recallKeyword',
-  install,
+const install: installFn = (client, helper) => {
+  client.on('message.group', data => listener(data, helper));
 };
 
-export default plugin;
+export const RecallKeyword: Plugin = {
+  name: '关键词撤回',
+  install,
+};

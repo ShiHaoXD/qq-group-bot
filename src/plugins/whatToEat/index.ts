@@ -1,6 +1,6 @@
 import {GroupMessageEventData, PrivateMessageEventData} from 'oicq';
-import {bot, helper, groupID} from '../../bot';
-import {Food, Plugin} from '../../shared/types';
+import Helper from '../../Helper';
+import {Food, installFn, Plugin} from '../../shared/types';
 import {foods, neverEatFoods} from './config';
 function genWhatToEat(foods: Food[]) {
   const index = Math.floor(Math.random() * foods.length);
@@ -19,25 +19,23 @@ function check(msg: string, sender: (msg: string) => void) {
   }
 }
 
-function groupListener(data: GroupMessageEventData) {
+function groupListener(data: GroupMessageEventData, helper: Helper) {
   const {raw_message, group_id} = data;
-  if (group_id && groupID !== group_id) return;
+  if (group_id && helper.groupID !== group_id) return;
   check(raw_message, helper.sendMsg.bind(helper));
 }
 
-function privateListener(data: PrivateMessageEventData) {
+function privateListener(data: PrivateMessageEventData, helper: Helper) {
   const {raw_message, user_id} = data;
   check(raw_message, helper.sendPrivateMsg.bind(helper, user_id));
 }
 
-function install() {
-  bot.on('message.group', groupListener);
-  bot.on('message.private', privateListener);
-}
-
-const plugin: Plugin = {
-  name: 'whatToEat',
-  install,
+const install: installFn = (client, helper) => {
+  client.on('message.group', data => groupListener(data, helper));
+  client.on('message.private', data => privateListener(data, helper));
 };
 
-export default plugin;
+export const WhatToEat: Plugin = {
+  name: '吃什么',
+  install,
+};

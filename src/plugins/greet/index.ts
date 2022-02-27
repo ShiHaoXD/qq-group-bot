@@ -1,8 +1,8 @@
 import {GroupMessageEventData} from 'oicq';
-import {bot, groupID, helper} from '../../bot';
-import {Plugin} from '../../shared/types';
+import Helper from '../../Helper';
+import {installFn, Plugin} from '../../shared/types';
 import {reply} from './config.example';
-function talk(data: GroupMessageEventData) {
+function talk(data: GroupMessageEventData, helper: Helper) {
   const {raw_message, user_id} = data;
   if (/\S*机器人\S*/.test(raw_message)) {
     if (Object.keys(reply).includes(user_id + '')) {
@@ -17,17 +17,17 @@ function talk(data: GroupMessageEventData) {
   }
 }
 
-function install() {
-  bot.on('message.group', data => {
+const install: installFn = (client, helper) => {
+  client.on('message.group', data => {
     const {group_id} = data;
-    if (group_id !== groupID) return;
-    talk(data);
+    if (group_id !== helper.groupID) return;
+    talk(data, helper);
   });
-}
+};
 
-const plugin: Plugin = {
-  name: 'greet',
+const Greet: Plugin = {
+  name: '对话交互',
   install,
 };
 
-export default plugin;
+export default Greet;

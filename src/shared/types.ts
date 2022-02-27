@@ -1,3 +1,6 @@
+import {Client} from 'oicq';
+import Helper from '../Helper';
+
 export interface replyKeyword {
   readonly regex: RegExp;
   readonly reply: string;
@@ -8,8 +11,10 @@ export interface Food {
   readonly restaurants: string[];
 }
 
+export type installFn = (client: Client, helper: Helper) => void;
+
 export interface Plugin {
-  readonly install: () => void;
+  readonly install: (client: Client, helper: Helper) => void;
   readonly name?: string;
 }
 

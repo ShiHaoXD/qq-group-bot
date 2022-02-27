@@ -1,7 +1,7 @@
 import {getClockinStatus, getLocation, clockin} from './api';
 import {getLocalTime, getNowTimestamp} from '../../shared/date';
 import {infos} from './config.example';
-import {helper} from '../../bot';
+import Helper from '../../Helper';
 
 const dateCode = [
   's9ZS',
@@ -71,7 +71,7 @@ const random = (min: any, max: any) => {
   return parseInt(Math.random() * (max - min + 1) + min, 10);
 };
 
-const healthClockin = async (name: string) => {
+const healthClockin = async (name: string, helper: Helper) => {
   try {
     const {openid, xh, address, gender} = infos[name].info;
 

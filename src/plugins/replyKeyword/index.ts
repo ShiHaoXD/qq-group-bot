@@ -1,12 +1,12 @@
 import {GroupMessageEventData} from 'oicq';
+import Helper from '../../Helper';
 
-import {bot, groupID, helper} from '../../bot';
-import {Plugin} from '../../shared/types';
+import {installFn, Plugin} from '../../shared/types';
 import {replyKeywords} from './config';
 
-function listener(data: GroupMessageEventData) {
+function listener(data: GroupMessageEventData, helper: Helper) {
   const {group_id, raw_message} = data;
-  if (groupID !== group_id) return;
+  if (helper.groupID !== group_id) return;
   replyKeywords.forEach(async e => {
     if (e.regex.test(raw_message)) {
       helper.sendMsg(e.reply);
@@ -14,13 +14,11 @@ function listener(data: GroupMessageEventData) {
   });
 }
 
-function install() {
-  bot.on('message.group', listener);
-}
-
-const plugin: Plugin = {
-  name: 'replyKeyword',
-  install,
+const install: installFn = (client, helper) => {
+  client.on('message.group', data => listener(data, helper));
 };
 
-export default plugin;
+export const ReplyKeyword: Plugin = {
+  name: '关键词回复',
+  install,
+};

@@ -1,8 +1,13 @@
-import {plugins} from './plugins';
-function installPlugin() {
-  plugins.forEach(plugin => {
-    plugin.install();
-  });
-}
+import {createBot} from './bot';
 
-installPlugin();
+import {config} from 'dotenv';
+import Greet from './plugins/greet';
+
+config();
+
+export const account = parseInt(process.env.ACCOUNT!);
+export const password = process.env.PASS_WORD!;
+export const groupID = parseInt(process.env.GROUP_ID!);
+const bot = createBot(account, password, groupID);
+
+bot.use(Greet);

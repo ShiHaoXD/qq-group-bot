@@ -6,6 +6,7 @@ import {infos} from './config.example';
 import healthClockin from './healthClockin';
 import {scheduleJob} from 'node-schedule';
 import {applyLeaveSchool, leaveOrBackSchool} from './free';
+import {LEAVE_OR_BACK_TYPE} from './constants';
 let clockinSwitch = true;
 
 async function check(
@@ -17,7 +18,7 @@ async function check(
   const regexLeaveOrBack = /[出入]校 [\S]*/;
   const regexClockin = /打卡 [开关]/;
   if (regex.test(msg) || regexLeaveOrBack.test(msg)) {
-    const action = msg.split(' ')[0];
+    const action = msg.split(' ')[0] as LEAVE_OR_BACK_TYPE;
     const name = msg.split(' ')[1];
     if (Object.keys(infos).includes(name)) {
       if (infos[name].owner_id === user_id) {
@@ -35,7 +36,7 @@ async function check(
       if (user_id === infos[key].owner_id) {
         msg === '申请'
           ? sender(await applyLeaveSchool(key))
-          : sender(await leaveOrBackSchool(key, msg));
+          : sender(await leaveOrBackSchool(key, msg as LEAVE_OR_BACK_TYPE));
       }
     });
   } else if (regexClockin.test(msg)) {

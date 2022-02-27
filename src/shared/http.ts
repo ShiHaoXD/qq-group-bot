@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, {AxiosResponse} from 'axios';
 
 export const createAxiosInstance = (baseURL: string, headers: any) => {
   const instance = axios.create({
@@ -7,7 +7,10 @@ export const createAxiosInstance = (baseURL: string, headers: any) => {
     timeout: 6000,
   });
 
-  async function get(url: string, params: any = {}) {
+  async function get<T>(
+    url: string,
+    params: any = {}
+  ): Promise<AxiosResponse<T>> {
     try {
       return instance.get(url, {params});
     } catch (error) {
@@ -15,7 +18,11 @@ export const createAxiosInstance = (baseURL: string, headers: any) => {
     }
   }
 
-  async function post(url: string, data: any = {}, config: any = {}) {
+  async function post<T>(
+    url: string,
+    data: any = {},
+    config: any = {}
+  ): Promise<AxiosResponse<T>> {
     try {
       return instance.post(url, data, config);
     } catch (error) {

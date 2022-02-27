@@ -5,6 +5,7 @@ import {
 } from '../../shared/date';
 import {apply, getList, leaveOrBack} from './api';
 import {infos} from './config.example';
+import {LEAVE_OR_BACK_TYPE} from './constants';
 
 const initialInfo = {
   nj: '2019',
@@ -36,14 +37,14 @@ export async function applyLeaveSchool(name: string) {
   }
 }
 
-export async function leaveOrBackSchool(name: string, type: string) {
+export async function leaveOrBackSchool(
+  name: string,
+  type: LEAVE_OR_BACK_TYPE
+) {
   const {openid, xh} = infos[name].info;
   const chu = {
     type: type,
-    version: '1.1',
-    location: type === '出校' ? '崇文门出口5' : '崇文门入口2',
-    latitude: '',
-    longitude: '',
+    location: type === LEAVE_OR_BACK_TYPE.LEAVE ? '崇文门出口5' : '崇文门入口2',
     timestamp: getNowTimestamp(),
   };
   const userInfo = {

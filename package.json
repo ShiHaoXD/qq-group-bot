@@ -1,6 +1,6 @@
 {
   "name": "qq-bot",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "main": "index.js",
   "license": "MIT",
   "author": "Cansiny0320",
@@ -16,7 +16,8 @@
     "compile": "tsc",
     "fix": "gts fix",
     "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
   },
   "dependencies": {
     "axios": "^0.26.0",

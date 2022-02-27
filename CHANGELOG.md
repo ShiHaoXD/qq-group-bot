@@ -1,3 +1,29 @@
+# [1.4.0](https://github.com/Cansiny0320/qq-group-bot/compare/v1.3.0...v1.4.0) (2022-02-27)
+
+
+### Bug Fixes
+
+* 参数错误 ([4c890fa](https://github.com/Cansiny0320/qq-group-bot/commit/4c890fa2b36b8a3260da9cc60ffa0fbf0e81ad1f))
+* 更新 url ([8285096](https://github.com/Cansiny0320/qq-group-bot/commit/8285096616cbe2b158b58a1399c4e68e189c7328))
+* 修复每日新闻功能 ([793d04a](https://github.com/Cansiny0320/qq-group-bot/commit/793d04ae0303b23a6d161fa8545c87a0cb65b9c9))
+* 应避免在 some 函数里使用异步函数 ([ccb4eca](https://github.com/Cansiny0320/qq-group-bot/commit/ccb4eca7cfaa0f76680a0c9825f91802316a60d2))
+* 掌邮签到 ([d1b309f](https://github.com/Cansiny0320/qq-group-bot/commit/d1b309feeae4a861a003b13dd3a829b7a24e85b9))
+* puppeteer 奇怪的 bug ([08b3649](https://github.com/Cansiny0320/qq-group-bot/commit/08b36493080cccaddb9ec68db2395913d2361ea9))
+
+
+### Features
+
+* 补充接口类型 ([0a861e0](https://github.com/Cansiny0320/qq-group-bot/commit/0a861e08373e8e169a665127f2b10e744d30618b))
+* 更新出校申请功能（适配扫脸出校申请） ([d62d015](https://github.com/Cansiny0320/qq-group-bot/commit/d62d0154ebf16b3cc2f352fa872b04910ecaeea7))
+* 恢复一键离返校功能 ([82fe56b](https://github.com/Cansiny0320/qq-group-bot/commit/82fe56b60bd5ffdc43dc1a60886b1e76f574ee4a))
+* 简化出校申请命令 ([a1d5335](https://github.com/Cansiny0320/qq-group-bot/commit/a1d53353703b436cacff59fc852ca059a5367a3b))
+* 增加打卡开关 ([1dda6e8](https://github.com/Cansiny0320/qq-group-bot/commit/1dda6e8b25e7720f3da6158ed0c8fc32fbdc7b8b))
+* 增加日期工具方法 更新接口参数 ([40e30e0](https://github.com/Cansiny0320/qq-group-bot/commit/40e30e0171e6ea2bb75ea040e918f40e37d4e687))
+* oicq 升级为 2.x 版本 ([7367923](https://github.com/Cansiny0320/qq-group-bot/commit/73679232c80364d8af1c94c4ee7efc38502a9027))
+* **weather:** 增大频率 ([7d2fb43](https://github.com/Cansiny0320/qq-group-bot/commit/7d2fb430478049c8f3d82985ae53a7b68b747ae7))
+
+
+
 # [1.3.0](https://github.com/Cansiny0320/qq-group-bot/compare/v1.2.0...v1.3.0) (2021-07-19)
 
 

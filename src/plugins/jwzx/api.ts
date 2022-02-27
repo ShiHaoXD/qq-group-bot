@@ -8,4 +8,5 @@ const headers = {
 
 const {get} = createAxiosInstance(baseURL, headers);
 
-export const getJwzxNews = (page: number) => get('/jwNews/list?page=1', {page});
+export const getJwzxNews = (page: number) =>
+  get<any>('/jwNews/list?page=1', {page});

@@ -8,7 +8,7 @@ const headers = {
 const {post} = createAxiosInstance(baseURL, headers);
 
 export const checkIn = (data: any) =>
-  post('/Integral/checkIn', stringify(data));
+  post<any>('/Integral/checkIn', stringify(data));
 
 export const getCheckInStatus = (data: any) =>
-  post('/User/getScoreStatus', stringify(data));
+  post<any>('/User/getScoreStatus', stringify(data));

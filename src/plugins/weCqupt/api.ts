@@ -124,7 +124,7 @@ export const leaveOrBack = (data: LeaveOrBackReq) =>
   });
 
 export const getClockinStatus = (data: any) =>
-  post('/mrdk/get_mrdk_flag.php', {
+  post<any>('/mrdk/get_mrdk_flag.php', {
     key: json2base64(data),
   });
 

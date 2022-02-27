@@ -1,7 +1,7 @@
 import {GroupMessageEventData} from 'oicq';
 import {bot, groupID, helper} from '../../bot';
 import {Plugin} from '../../shared/types';
-import {reply} from './config.private';
+import {reply} from './config.example';
 function talk(data: GroupMessageEventData) {
   const {raw_message, user_id} = data;
   if (/\S*机器人\S*/.test(raw_message)) {

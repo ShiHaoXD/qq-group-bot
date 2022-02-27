@@ -34,6 +34,7 @@ type baseParams = {
 type ApplyParams = {
   yjfxsj: string;
   wcrq: string;
+  // sfly: string;
 } & studentInfo &
   applyBaseParams &
   baseParams;
@@ -64,7 +65,7 @@ export const getList = (data: GetListParams) =>
   });
 
 export const leaveOrBack = (data: LeaveOrBackParams) =>
-  post('/lxsp_new/post_lxsp_sm.php`', {
+  post('/lxsp_new/post_lxsp_sm.php', {
     key: json2base64(data),
   });
 

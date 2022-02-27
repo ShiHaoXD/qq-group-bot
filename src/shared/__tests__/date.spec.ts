@@ -1,5 +1,11 @@
+import dayjs from 'dayjs';
 import {expect, test} from 'vitest';
-import {getNowTimestamp, getNowTimeString, getTodayDate} from '../date';
+import {
+  getNowTimestamp,
+  getNowTimeString,
+  getTimeStringFromHour,
+  getTodayDate,
+} from '../date';
 
 test('getTodayDate', () => {
   expect(getTodayDate()).eq(
@@ -20,4 +26,10 @@ test('getNowTimeString', () => {
   const timeStringReg =
     /^\d{1,4}(-)(1[0-2]|0?[1-9])\1(0?[1-9]|[1-2]\d|30|31) (?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d$/;
   expect(timeStringReg.test(getNowTimeString())).toBeTruthy();
+});
+
+test('getTimeStringFromHour', () => {
+  const diffHour = 3;
+  const date1 = dayjs(getTimeStringFromHour(diffHour));
+  expect(date1.diff(getNowTimeString(), 'h')).eq(diffHour);
 });

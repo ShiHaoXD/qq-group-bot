@@ -1,4 +1,8 @@
-import {getNowTimestamp, getTodayDate} from '../../shared/date';
+import {
+  getNowTimestamp,
+  getNowTimeString,
+  getTimeStringFromHour,
+} from '../../shared/date';
 import {apply, getList, leaveOrBack} from './api';
 import {infos} from './config.example';
 
@@ -19,8 +23,8 @@ export async function applyLeaveSchool(name: string) {
     xy,
     openid,
     ...initialInfo,
-    yjfxsj: getTodayDate(),
-    wcrq: getTodayDate(),
+    yjfxsj: getNowTimeString(),
+    wcrq: getTimeStringFromHour(3),
     timestamp: getNowTimestamp(),
   };
   const {data} = await apply(requestData);

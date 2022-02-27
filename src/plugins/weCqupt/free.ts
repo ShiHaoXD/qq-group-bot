@@ -23,8 +23,8 @@ export async function applyLeaveSchool(name: string) {
     xy,
     openid,
     ...initialInfo,
-    yjfxsj: getNowTimeString(),
-    wcrq: getTimeStringFromHour(3),
+    yjfxsj: getTimeStringFromHour(3),
+    wcrq: getNowTimeString(),
     timestamp: getNowTimestamp(),
   };
   const {data} = await apply(requestData);

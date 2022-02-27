@@ -7,7 +7,7 @@
 // import {apply, getList, leaveOrBack} from '../api';
 // import {infos} from '../config.private';
 
-// const user = infos['王炬欣'];
+// const user = infos['xxx'];
 
 // test('getList', async () => {
 //   const {data} = await getList({

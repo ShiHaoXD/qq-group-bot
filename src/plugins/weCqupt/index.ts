@@ -1,4 +1,4 @@
-import {GroupMessageEventData, PrivateMessageEventData} from 'oicq';
+import {GroupMessageEvent, PrivateMessageEvent} from 'oicq';
 import {installFn, Plugin} from '../../shared/types';
 import healthClockin from './healthClockin';
 import {scheduleJob} from 'node-schedule';
@@ -45,15 +45,19 @@ async function check(
   }
 }
 
-function groupListener(data: GroupMessageEventData, helper: Helper) {
-  const {raw_message, group_id, user_id} = data;
+function groupListener(data: GroupMessageEvent, helper: Helper) {
+  const {
+    raw_message,
+    group_id,
+    sender: {user_id},
+  } = data;
   if (group_id && helper.groupID !== group_id) return;
   check(user_id, raw_message, helper.sendMsg.bind(helper));
 }
 
-function privateListener(data: PrivateMessageEventData, helper: Helper) {
-  const {raw_message, user_id} = data;
-  check(user_id, raw_message, helper.sendPrivateMsg.bind(helper, user_id));
+function privateListener(data: PrivateMessageEvent, helper: Helper) {
+  const {raw_message, from_id} = data;
+  check(from_id, raw_message, helper.sendPrivateMsg.bind(helper, from_id));
 }
 
 const install: installFn = (client, helper) => {

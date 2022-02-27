@@ -1,8 +1,8 @@
-import {GroupMessageEventData} from 'oicq';
+import {GroupMessageEvent} from 'oicq';
 import Helper from '../../Helper';
 import {installFn, Plugin} from '../../shared/types';
 
-let recentMessages: GroupMessageEventData[] = [];
+let recentMessages: GroupMessageEvent[] = [];
 const canRepeatTimes = 5;
 const banTimeLimit = 5;
 function banForRepeat(helper: Helper) {
@@ -16,13 +16,13 @@ function banForRepeat(helper: Helper) {
   if (recentMessages.every(e => e.raw_message === raw)) {
     const banTime = Math.ceil(Math.random() * banTimeLimit) * 60;
     helper.banMember(
-      recentMessages[recentMessages.length - 1].user_id,
+      recentMessages[recentMessages.length - 1].sender.user_id,
       banTime
     );
   }
 }
 
-function listener(data: GroupMessageEventData, helper: Helper) {
+function listener(data: GroupMessageEvent, helper: Helper) {
   const {group_id} = data;
   if (helper.groupID !== group_id) return;
   recentMessages.push(data);

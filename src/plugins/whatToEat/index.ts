@@ -1,4 +1,4 @@
-import {GroupMessageEventData, PrivateMessageEventData} from 'oicq';
+import {GroupMessageEvent, PrivateMessageEvent} from 'oicq';
 import Helper from '../../Helper';
 import {Food, installFn, Plugin} from '../../shared/types';
 import {foods, neverEatFoods} from './config';
@@ -19,15 +19,15 @@ function check(msg: string, sender: (msg: string) => void) {
   }
 }
 
-function groupListener(data: GroupMessageEventData, helper: Helper) {
+function groupListener(data: GroupMessageEvent, helper: Helper) {
   const {raw_message, group_id} = data;
   if (group_id && helper.groupID !== group_id) return;
   check(raw_message, helper.sendMsg.bind(helper));
 }
 
-function privateListener(data: PrivateMessageEventData, helper: Helper) {
-  const {raw_message, user_id} = data;
-  check(raw_message, helper.sendPrivateMsg.bind(helper, user_id));
+function privateListener(data: PrivateMessageEvent, helper: Helper) {
+  const {raw_message, from_id} = data;
+  check(raw_message, helper.sendPrivateMsg.bind(helper, from_id));
 }
 
 const install: installFn = (client, helper) => {

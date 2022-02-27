@@ -4,6 +4,7 @@
     "target": "ESNEXT",
     "rootDir": "./src",
     "outDir": "build",
+    "moduleResolution": "node",
     "lib": [
       "DOM.Iterable",
       "DOM",

@@ -1,10 +1,10 @@
-import {GroupMessageEventData} from 'oicq';
+import {GroupMessageEvent} from 'oicq';
 import {scheduleJob} from 'node-schedule';
 import {installFn, Plugin} from '../../shared/types';
 import {getWeiboHotNews, getWhatHappenedToTheWorld} from './api';
 import Helper from '../../Helper';
 
-async function listener(data: GroupMessageEventData, helper: Helper) {
+async function listener(data: GroupMessageEvent, helper: Helper) {
   const {group_id, raw_message} = data;
   if (helper.groupID !== group_id) return;
   if (raw_message === '热搜') {

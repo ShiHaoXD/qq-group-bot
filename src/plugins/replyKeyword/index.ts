@@ -1,10 +1,10 @@
-import {GroupMessageEventData} from 'oicq';
+import {GroupMessageEvent} from 'oicq';
 import Helper from '../../Helper';
 
 import {installFn, Plugin} from '../../shared/types';
 import {replyKeywords} from './config';
 
-function listener(data: GroupMessageEventData, helper: Helper) {
+function listener(data: GroupMessageEvent, helper: Helper) {
   const {group_id, raw_message} = data;
   if (helper.groupID !== group_id) return;
   replyKeywords.forEach(async e => {

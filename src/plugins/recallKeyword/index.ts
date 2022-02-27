@@ -1,9 +1,9 @@
-import {GroupMessageEventData} from 'oicq';
+import {GroupMessageEvent} from 'oicq';
 import Helper from '../../Helper';
 import {installFn, Plugin} from '../../shared/types';
 import {recallKeywords} from './config';
 
-function listener(data: GroupMessageEventData, helper: Helper) {
+function listener(data: GroupMessageEvent, helper: Helper) {
   const {group_id, raw_message, message_id} = data;
   if (helper.groupID !== group_id) return;
   if (recallKeywords.some(regex => regex.test(raw_message))) {

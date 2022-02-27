@@ -1,4 +1,4 @@
-import {Client, MessageElem} from 'oicq';
+import {Client, Sendable} from 'oicq';
 import {Plugin} from './shared/types';
 
 export default class Helper {
@@ -10,14 +10,11 @@ export default class Helper {
     this.groupID = groupID;
     this.plugins = [];
   }
-  sendMsg(msg: string | MessageElem | Iterable<MessageElem>) {
+  sendMsg(msg: Sendable) {
     return this.client.sendGroupMsg(this.groupID, msg);
   }
 
-  sendPrivateMsg(
-    receiverID: number,
-    msg: string | MessageElem | Iterable<MessageElem>
-  ) {
+  sendPrivateMsg(receiverID: number, msg: Sendable) {
     return this.client.sendPrivateMsg(receiverID, msg);
   }
 

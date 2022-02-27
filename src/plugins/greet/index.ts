@@ -1,9 +1,12 @@
-import {GroupMessageEventData} from 'oicq';
+import {GroupMessageEvent} from 'oicq';
 import Helper from '../../Helper';
 import {installFn, Plugin} from '../../shared/types';
 import {reply} from './config.example';
-function talk(data: GroupMessageEventData, helper: Helper) {
-  const {raw_message, user_id} = data;
+function talk(data: GroupMessageEvent, helper: Helper) {
+  const {
+    raw_message,
+    sender: {user_id},
+  } = data;
   if (/\S*机器人\S*/.test(raw_message)) {
     if (Object.keys(reply).includes(user_id + '')) {
       helper.sendMsg(

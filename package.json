@@ -15,7 +15,7 @@
     "clean": "gts clean",
     "compile": "tsc",
     "fix": "gts fix",
-    "test": "vitest",
+    "test": "vitest run",
     "coverage": "vitest run --coverage",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
   },

@@ -15,7 +15,7 @@ export function createBot(account: number, password: string, groupID: number) {
   //监听并输入滑动验证码ticket(同一设备只需验证一次)
   client.on('system.login.slider', () => {
     process.stdin.once('data', input => {
-      client.sliderLogin(input as unknown as string);
+      client.submitSlider(input as unknown as string);
     });
   });
 
@@ -26,18 +26,19 @@ export function createBot(account: number, password: string, groupID: number) {
       client.login();
     });
   });
+
   client.login(password);
 
   const helper = new Helper(client, groupID);
+
   const use: usePluginFn = (plugin: Plugin) => {
     helper.plugins.push(plugin);
-    const fn = (client: Client, helper: Helper) => {
-      plugin.install(client, helper);
-    };
-    fn(client, helper);
+    plugin.install(client, helper);
   };
 
-  client.on('system.online', () => helper.sendMsg('bot 启动成功'));
+  client.on('system.online', () => {
+    helper.sendMsg('bot 启动成功');
+  });
 
   return {
     client,

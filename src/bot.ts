@@ -41,8 +41,6 @@ export function createBot(account: number, password: string, groupID: number) {
   });
 
   return {
-    client,
-    helper,
     use,
   };
 }

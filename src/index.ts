@@ -1,7 +1,7 @@
 import {createBot} from './bot';
 
 import {config} from 'dotenv';
-import Greet from './plugins/greet';
+import {Greet} from './plugins/greet';
 
 config();
 

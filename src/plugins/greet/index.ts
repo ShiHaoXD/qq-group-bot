@@ -28,9 +28,7 @@ const install: installFn = (client, helper) => {
   });
 };
 
-const Greet: Plugin = {
+export const Greet: Plugin = {
   name: '对话交互',
   install,
 };
-
-export default Greet;

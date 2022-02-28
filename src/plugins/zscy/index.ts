@@ -1,6 +1,6 @@
 import {installFn, Plugin} from '../../shared/types';
 import {scheduleJob} from 'node-schedule';
-import {zscyAccounts} from './config.example';
+import {zscyAccounts} from './config.private';
 import {checkIn as checkInAPI, getCheckInStatus} from './api';
 import Helper from '../../Helper';
 

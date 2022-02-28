@@ -1,6 +1,6 @@
 import {getClockinStatus, getLocation, clockin} from './api';
 import {getLocalTime, getNowTimestamp} from '../../shared/date';
-import {infos} from './config.example';
+import {infos} from './config.private';
 import Helper from '../../Helper';
 
 const dateCode = [

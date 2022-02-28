@@ -1,10 +1,10 @@
 import {
   getNowTimestamp,
   getNowTimeString,
-  getTimeStringFromHour,
+  getTodayLastTimeString,
 } from '../../shared/date';
-import {apply, getList, leaveOrBack} from './api';
-import {infos} from './config.example';
+import {apply, getList, leaveOrBack, LeaveOrBackReq} from './api';
+import {infos} from './config.private';
 import {LEAVE_OR_BACK_TYPE} from './constants';
 
 const initialInfo = {
@@ -12,7 +12,7 @@ const initialInfo = {
   qjsy: '1',
   wcxxdd: '1',
   wcmdd: '重庆市,重庆市,南岸区',
-  qjlx: '市内当日离返校',
+  qjlx: '市内3小时离返校',
   beizhu: '',
 };
 
@@ -24,7 +24,7 @@ export async function applyLeaveSchool(name: string) {
     xy,
     openid,
     ...initialInfo,
-    yjfxsj: getTimeStringFromHour(3),
+    yjfxsj: getTodayLastTimeString(),
     wcrq: getNowTimeString(),
     timestamp: getNowTimestamp(),
   };
@@ -44,7 +44,8 @@ export async function leaveOrBackSchool(
   const {openid, xh} = infos[name].info;
   const chu = {
     type: type,
-    location: type === LEAVE_OR_BACK_TYPE.LEAVE ? '崇文门出口5' : '崇文门入口2',
+    location:
+      type === LEAVE_OR_BACK_TYPE.LEAVE ? '崇文门出口4' : '崇文门侧门入口1',
     timestamp: getNowTimestamp(),
   };
   const userInfo = {
@@ -56,7 +57,10 @@ export async function leaveOrBackSchool(
     timestamp: getNowTimestamp(),
   });
 
-  const requestData = {
+  const requestData: LeaveOrBackReq = {
+    version: '1.1',
+    latitude: '',
+    longitude: '',
     ...chu,
     ...userInfo,
     log_id: listData.data.result[0].log_id,
@@ -66,6 +70,6 @@ export async function leaveOrBackSchool(
   if (data.status === 200) {
     return `${type}成功`;
   } else {
-    return `${type}失败\n请求数据：${requestData}\n返回数据${data}`;
+    return `${type}失败 ${data.message}`;
   }
 }

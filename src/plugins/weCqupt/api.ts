@@ -97,6 +97,9 @@ export type LeaveOrBackReq = {
   location: string;
   log_id: string;
   xh: string;
+  version: string;
+  longitude: string;
+  latitude: string;
 } & baseParams;
 
 export type LeaveOrBackRes = BaseRes<LeaveOrBackData>;
@@ -120,7 +123,7 @@ export const getList = (data: GetListReq) =>
 
 export const leaveOrBack = (data: LeaveOrBackReq) =>
   post<LeaveOrBackRes>('/lxsp_new/post_lxsp_sm.php', {
-    key: json2base64({version: '1.1', longitude: '', latitude: '', ...data}),
+    key: json2base64(data),
   });
 
 export const getClockinStatus = (data: any) =>

@@ -6,7 +6,10 @@ export const getNowTimestamp = () => dayjs().unix();
 
 export const getNowTimeString = () => dayjs().format('YYYY-MM-DD HH:mm:ss');
 
-export const getTimeStringFromHour = (hour: number) =>
+export const getTodayLastTimeString = () =>
+  dayjs().endOf('day').format('YYYY-MM-DD HH:mm:ss');
+
+export const getTimeStringDiffHour = (hour: number) =>
   dayjs()
     .hour(dayjs().hour() + hour)
     .format('YYYY-MM-DD HH:mm:ss');

@@ -3,8 +3,9 @@ import {expect, test} from 'vitest';
 import {
   getNowTimestamp,
   getNowTimeString,
-  getTimeStringFromHour,
+  getTimeStringDiffHour,
   getTodayDate,
+  getTodayLastTimeString,
 } from '../date';
 
 test('getTodayDate', () => {
@@ -28,8 +29,12 @@ test('getNowTimeString', () => {
   expect(timeStringReg.test(getNowTimeString())).toBeTruthy();
 });
 
+test('getTodayLastTimeString', () => {
+  expect(getTodayLastTimeString()).eq(`${getTodayDate()} 23:59:59`);
+});
+
 test('getTimeStringFromHour', () => {
   const diffHour = 3;
-  const date1 = dayjs(getTimeStringFromHour(diffHour));
+  const date1 = dayjs(getTimeStringDiffHour(diffHour));
   expect(date1.diff(getNowTimeString(), 'h')).eq(diffHour);
 });

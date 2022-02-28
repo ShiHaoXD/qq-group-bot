@@ -1,7 +1,7 @@
 import {GroupMessageEvent} from 'oicq';
 import Helper from '../../Helper';
 import {installFn, Plugin} from '../../shared/types';
-import {reply} from './config.example';
+import {reply} from './config.private';
 function talk(data: GroupMessageEvent, helper: Helper) {
   const {
     raw_message,

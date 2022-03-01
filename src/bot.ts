@@ -33,10 +33,10 @@ export function createBot(account: number, password: string, groupID: number) {
 
   const use: usePluginFn = (plugin: Plugin) => {
     helper.plugins.push(plugin);
-    plugin.install(client, helper);
   };
 
   client.on('system.online', () => {
+    helper.plugins.forEach(plugin => plugin.install(client, helper));
     helper.sendMsg('bot 启动成功');
   });
 

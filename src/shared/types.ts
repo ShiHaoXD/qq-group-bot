@@ -19,8 +19,9 @@ export interface Plugin {
 }
 
 export interface ZscyAccount {
-  readonly stunum: string; // 账号
-  readonly idnum: string; // 密码
+  readonly qq: number; // QQ 号
+  readonly stuNum: string; // 账号
+  readonly idNum: string; // 密码
 }
 
 export interface StudentInfo {
@@ -36,3 +37,11 @@ export interface StudentInfo {
     owner_id: number;
   };
 }
+
+// export const isRejected = (
+//   input: PromiseSettledResult<unknown>
+// ): input is PromiseRejectedResult => input.status === 'rejected';
+
+// export const isFulfilled = <T>(
+//   input: PromiseSettledResult<T>
+// ): input is PromiseFulfilledResult<T> => input.status === 'fulfilled';

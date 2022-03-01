@@ -1,3 +1,8 @@
+# 1.5.0
+
+### Features
+
+- 掌邮插件增加自动完成每日邮票任务功能并修复每日签到功能
 # [1.4.0](https://github.com/Cansiny0320/qq-group-bot/compare/v1.3.0...v1.4.0) (2022-02-27)
 
 

@@ -5,8 +5,6 @@ const baseURL = 'https://be-prod.redrock.cqupt.edu.cn/magipoke-intergral/QA';
 
 const {post} = createAxiosInstance(baseURL);
 
-export interface CheckInCommonReq {}
-
 export interface CheckInRes {
   status: number;
   info: string;

@@ -24,10 +24,11 @@ async function checkIn(account: ZscyAccount, helper: Helper) {
     stuNum: account.stuNum,
     idNum: account.idNum,
   };
-  const {data} = await checkInAPI(loginInfo);
+  const token = await getToken(loginInfo);
+  const {data} = await checkInAPI(token);
   switch (data.status) {
     case SUCCESS_STATUS: {
-      const {data: statusData} = await getCheckInStatus(loginInfo);
+      const {data: statusData} = await getCheckInStatus(token);
       const {
         data: {check_in_days, rank, percent},
       } = statusData;

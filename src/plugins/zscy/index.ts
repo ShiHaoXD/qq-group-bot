@@ -81,17 +81,15 @@ async function stampTask(account: ZscyAccount, helper: Helper) {
         if (i === lastTimes - 1) {
           isDone = true;
         }
+        await sleep(1000);
       } catch (e: any) {
         msg.push(`${task.title}失败，${e?.message}`);
-      } finally {
-        await sleep(1000);
+        break;
       }
     }
     if (isDone) {
       msg.push(`${task.title}任务完成，获得邮票 ${task.gain_stamp}`);
       totalGainStamp += task.gain_stamp;
-    } else {
-      msg.push(`${task.title}任务未完成`);
     }
   }
   msg.push(`总获得邮票：${totalGainStamp}`);

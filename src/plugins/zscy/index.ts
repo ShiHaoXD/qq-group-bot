@@ -39,7 +39,7 @@ async function checkIn(account: ZscyAccount, helper: Helper) {
       break;
     }
     case 403:
-      helper.sendPrivateMsg(account.qq, `签到失败，今日已签到`);
+      helper.sendPrivateMsg(account.qq, '签到失败，今日已签到');
       break;
     default:
       helper.sendPrivateMsg(account.qq, `签到失败，${data.info}`);
@@ -49,7 +49,7 @@ async function checkIn(account: ZscyAccount, helper: Helper) {
 
 async function stampTask(account: ZscyAccount, helper: Helper) {
   // const PLACE_HOLDER = Symbol('placeholder');
-  let msg: string[] = ['每日邮票任务：'];
+  const msg: string[] = ['每日邮票任务：'];
   let totalGainStamp = 0;
   const token = await getToken({
     idNum: account.idNum,
@@ -81,17 +81,15 @@ async function stampTask(account: ZscyAccount, helper: Helper) {
         if (i === lastTimes - 1) {
           isDone = true;
         }
+        await sleep(1000);
       } catch (e: any) {
         msg.push(`${task.title}失败，${e?.message}`);
-      } finally {
-        await sleep(1000);
+        break;
       }
     }
     if (isDone) {
       msg.push(`${task.title}任务完成，获得邮票 ${task.gain_stamp}`);
       totalGainStamp += task.gain_stamp;
-    } else {
-      msg.push(`${task.title}任务未完成`);
     }
   }
   msg.push(`总获得邮票：${totalGainStamp}`);

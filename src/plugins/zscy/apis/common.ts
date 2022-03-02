@@ -1,5 +1,3 @@
-import {getToken, TokenReq} from './login';
-
 export const genTokenHeader = (token: string) => {
   return {
     authorization: `Bearer ${token}`,

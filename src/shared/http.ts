@@ -13,7 +13,7 @@ export const createAxiosInstance = (
 
   async function get<T>(
     url: string,
-    params: Record<string, any> = {},
+    params: any = {},
     config: AxiosRequestConfig = {}
   ): Promise<AxiosResponse<T>> {
     try {
@@ -25,7 +25,7 @@ export const createAxiosInstance = (
 
   async function post<T>(
     url: string,
-    data: Record<string, any> = {},
+    data: any = {},
     config: AxiosRequestConfig = {}
   ): Promise<AxiosResponse<T>> {
     try {

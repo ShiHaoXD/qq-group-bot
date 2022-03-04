@@ -1,6 +1,6 @@
 import {scheduleJob} from 'node-schedule';
-import Helper from '../../Helper';
-import {installFn, Plugin} from '../../shared/types';
+import type Helper from '../../Helper';
+import type {installFn, Plugin} from '../../shared/types';
 import {getJwzxNews} from './api';
 
 const readedNews = new Map<string, string>();

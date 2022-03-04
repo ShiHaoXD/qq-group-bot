@@ -1,6 +1,10 @@
-import axios, {AxiosRequestConfig, AxiosResponse} from 'axios';
+import type {AxiosRequestConfig, AxiosResponse} from 'axios';
+import axios from 'axios';
 
-export const createAxiosInstance = (baseURL: string, headers: any = {}) => {
+export const createAxiosInstance = (
+  baseURL: string,
+  headers: Record<string, any> = {}
+) => {
   const instance = axios.create({
     baseURL,
     headers,
@@ -9,7 +13,7 @@ export const createAxiosInstance = (baseURL: string, headers: any = {}) => {
 
   async function get<T>(
     url: string,
-    params: any = {},
+    params: Record<string, any> = {},
     config: AxiosRequestConfig = {}
   ): Promise<AxiosResponse<T>> {
     try {
@@ -21,7 +25,7 @@ export const createAxiosInstance = (baseURL: string, headers: any = {}) => {
 
   async function post<T>(
     url: string,
-    data: any = {},
+    data: Record<string, any> = {},
     config: AxiosRequestConfig = {}
   ): Promise<AxiosResponse<T>> {
     try {

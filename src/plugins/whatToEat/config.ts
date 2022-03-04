@@ -1,4 +1,4 @@
-import {Food} from '../../shared/types';
+import type {Food} from '../../shared/types';
 
 export const foods: Food[] = [
   {

@@ -1,5 +1,6 @@
 import {createAxiosInstance} from '../../../shared/http';
-import {CommonRes, genTokenHeader, SUCCESS_STATUS} from './common';
+import type {CommonRes} from './common';
+import {genTokenHeader} from './common';
 const URL = 'https://be-prod.redrock.cqupt.edu.cn/magipoke';
 const headers = {
   'content-type': 'application/json',

@@ -1,6 +1,7 @@
-import {Client, createClient} from 'oicq';
+import type {Client} from 'oicq';
+import {createClient} from 'oicq';
 import Helper from './Helper';
-import {Plugin} from './shared/types';
+import type {Plugin} from './shared/types';
 
 type usePluginFn = (plugin: Plugin) => void;
 

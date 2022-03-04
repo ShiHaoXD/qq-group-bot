@@ -1,5 +1,6 @@
 import {createAxiosInstance} from '../../../shared/http';
-import {CommonRes, genTokenHeader} from './common';
+import type {CommonRes} from './common';
+import {genTokenHeader} from './common';
 const baseURL = 'https://be-prod.redrock.cqupt.edu.cn/magipoke-intergral/QA';
 
 const {post} = createAxiosInstance(baseURL);

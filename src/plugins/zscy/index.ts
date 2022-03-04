@@ -1,13 +1,14 @@
+import type {AxiosError} from 'axios';
 import {scheduleJob} from 'node-schedule';
-import {zscyAccounts} from './config.private';
+import type Helper from '../../Helper';
+import type {installFn, Plugin, ZscyAccount} from '../../shared/types';
 import {checkIn as checkInAPI, getCheckInStatus} from './apis/checkin';
 import {SUCCESS_STATUS} from './apis/common';
-import {getToken, TokenReq} from './apis/login';
+import type {GetInfoResData, TaskItem} from './apis/integral';
 import {getInfo, progressTask} from './apis/integral';
-import type Helper from '../../Helper';
-import type {GetInfoResData} from './apis/integral';
-import type {TaskItem} from './apis/integral';
-import type {Plugin, ZscyAccount, installFn} from '../../shared/types';
+import type {TokenReq} from './apis/login';
+import {getToken} from './apis/login';
+import {zscyAccounts} from './config.private';
 
 // 睡眠函数
 const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
@@ -82,8 +83,8 @@ async function stampTask(account: ZscyAccount, helper: Helper) {
           isDone = true;
         }
         await sleep(1000);
-      } catch (e: any) {
-        msg.push(`${task.title}失败，${e?.message}`);
+      } catch (e) {
+        msg.push(`${task.title}失败，${(e as AxiosError).message}`);
         break;
       }
     }

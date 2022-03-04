@@ -3,7 +3,8 @@ import {
   getNowTimeString,
   getTodayLastTimeString,
 } from '../../shared/date';
-import {apply, getList, leaveOrBack, LeaveOrBackReq} from './api';
+import type {LeaveOrBackReq} from './api';
+import {apply, getList, leaveOrBack} from './api';
 import {infos} from './config.private';
 import {LEAVE_OR_BACK_TYPE} from './constants';
 

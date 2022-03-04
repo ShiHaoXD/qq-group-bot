@@ -1,4 +1,4 @@
-import {StudentInfo} from '../../shared/types';
+import type {StudentInfo} from '../../shared/types';
 
 export const infos: StudentInfo = {
   申请人姓名: {

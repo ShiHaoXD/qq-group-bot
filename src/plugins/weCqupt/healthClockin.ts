@@ -1,7 +1,7 @@
-import {getClockinStatus, getLocation, clockin} from './api';
+import type Helper from '../../Helper';
 import {getLocalTime, getNowTimestamp} from '../../shared/date';
+import {clockin, getClockinStatus, getLocation} from './api';
 import {infos} from './config.private';
-import Helper from '../../Helper';
 
 const dateCode = [
   's9ZS',

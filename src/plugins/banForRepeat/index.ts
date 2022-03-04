@@ -1,6 +1,6 @@
-import {GroupMessageEvent} from 'oicq';
-import Helper from '../../Helper';
-import {installFn, Plugin} from '../../shared/types';
+import type {GroupMessageEvent} from 'oicq';
+import type Helper from '../../Helper';
+import type {installFn, Plugin} from '../../shared/types';
 
 let recentMessages: GroupMessageEvent[] = [];
 const canRepeatTimes = 5;

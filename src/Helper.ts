@@ -1,5 +1,5 @@
-import {Client, Sendable} from 'oicq';
-import {Plugin} from './shared/types';
+import type {Client, Sendable} from 'oicq';
+import type {Plugin} from './shared/types';
 
 export default class Helper {
   readonly client: Client;

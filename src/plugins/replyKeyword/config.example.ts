@@ -1,4 +1,4 @@
-import {replyKeyword} from '../../shared/types';
+import type {replyKeyword} from '../../shared/types';
 
 export const privateReplyKeywords: replyKeyword[] = [
   {

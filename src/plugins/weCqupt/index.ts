@@ -1,11 +1,11 @@
-import {GroupMessageEvent, PrivateMessageEvent} from 'oicq';
-import {installFn, Plugin} from '../../shared/types';
-import healthClockin from './healthClockin';
 import {scheduleJob} from 'node-schedule';
-import {applyLeaveSchool, leaveOrBackSchool} from './free';
-import {LEAVE_OR_BACK_TYPE} from './constants';
-import Helper from '../../Helper';
+import type {GroupMessageEvent, PrivateMessageEvent} from 'oicq';
+import type Helper from '../../Helper';
+import type {installFn, Plugin} from '../../shared/types';
 import {infos} from './config.private';
+import type {LEAVE_OR_BACK_TYPE} from './constants';
+import {applyLeaveSchool, leaveOrBackSchool} from './free';
+import healthClockin from './healthClockin';
 
 let clockinSwitch = true;
 

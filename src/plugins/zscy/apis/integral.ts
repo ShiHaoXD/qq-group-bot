@@ -1,6 +1,7 @@
 import {stringify} from 'qs';
 import {createAxiosInstance} from '../../../shared/http';
-import {CommonRes, genTokenHeader} from './common';
+import type {CommonRes} from './common';
+import {genTokenHeader} from './common';
 
 const URL = 'https://be-prod.redrock.cqupt.edu.cn/magipoke-intergral';
 

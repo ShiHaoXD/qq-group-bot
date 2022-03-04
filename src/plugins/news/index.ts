@@ -1,8 +1,8 @@
-import {GroupMessageEvent} from 'oicq';
 import {scheduleJob} from 'node-schedule';
-import {installFn, Plugin} from '../../shared/types';
+import type {GroupMessageEvent} from 'oicq';
+import type Helper from '../../Helper';
+import type {installFn, Plugin} from '../../shared/types';
 import {getWeiboHotNews, getWhatHappenedToTheWorld} from './api';
-import Helper from '../../Helper';
 
 async function listener(data: GroupMessageEvent, helper: Helper) {
   const {group_id, raw_message} = data;

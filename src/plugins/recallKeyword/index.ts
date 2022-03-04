@@ -1,6 +1,6 @@
-import {GroupMessageEvent} from 'oicq';
-import Helper from '../../Helper';
-import {installFn, Plugin} from '../../shared/types';
+import type {GroupMessageEvent} from 'oicq';
+import type Helper from '../../Helper';
+import type {installFn, Plugin} from '../../shared/types';
 import {recallKeywords} from './config';
 
 function listener(data: GroupMessageEvent, helper: Helper) {

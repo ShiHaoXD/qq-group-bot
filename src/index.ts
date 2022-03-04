@@ -1,14 +1,13 @@
-import {createBot} from './bot';
-
 import {config} from 'dotenv';
-import {Greet} from './plugins/greet';
-import {ReplyKeyword} from './plugins/replyKeyword';
+import {createBot} from './bot';
 import {BanForRepeat} from './plugins/banForRepeat';
-import {RecallKeyword} from './plugins/recallKeyword';
-import {WeCqupt} from './plugins/weCqupt';
-import {News} from './plugins/news';
+import {Greet} from './plugins/greet';
 import {Jwzx} from './plugins/jwzx';
+import {News} from './plugins/news';
+import {RecallKeyword} from './plugins/recallKeyword';
+import {ReplyKeyword} from './plugins/replyKeyword';
 import {WeatherForecast} from './plugins/weather';
+import {WeCqupt} from './plugins/weCqupt';
 import {WhatToEat} from './plugins/whatToEat';
 import {HandleCqupt} from './plugins/zscy';
 

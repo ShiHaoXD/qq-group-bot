@@ -1,5 +1,5 @@
-import {Client} from 'oicq';
-import Helper from '../Helper';
+import type {Client} from 'oicq';
+import type Helper from '../Helper';
 
 export interface replyKeyword {
   readonly regex: RegExp;

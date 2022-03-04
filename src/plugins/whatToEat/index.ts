@@ -1,6 +1,6 @@
-import {GroupMessageEvent, PrivateMessageEvent} from 'oicq';
-import Helper from '../../Helper';
-import {Food, installFn, Plugin} from '../../shared/types';
+import type {GroupMessageEvent, PrivateMessageEvent} from 'oicq';
+import type Helper from '../../Helper';
+import type {Food, installFn, Plugin} from '../../shared/types';
 import {foods, neverEatFoods} from './config';
 function genWhatToEat(foods: Food[]) {
   const index = Math.floor(Math.random() * foods.length);

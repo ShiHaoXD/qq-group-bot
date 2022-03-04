@@ -1,4 +1,4 @@
-import {ZscyAccount} from '../../shared/types';
+import type {ZscyAccount} from '../../shared/types';
 
 export const zscyAccounts: ZscyAccount[] = [
   {

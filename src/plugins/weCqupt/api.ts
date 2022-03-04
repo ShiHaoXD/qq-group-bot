@@ -1,7 +1,7 @@
-import {createAxiosInstance} from '../../shared/http';
-import {json2base64} from '../../shared/utils';
 import axios from 'axios';
-import {LEAVE_OR_BACK_TYPE} from './constants';
+import {createAxiosInstance} from '../../shared/http';
+import {obj2base64} from '../../shared/utils';
+import type {LEAVE_OR_BACK_TYPE} from './constants';
 
 const baseURL = 'https://we.cqupt.edu.cn/api';
 const headers = {
@@ -111,24 +111,29 @@ export interface LeaveOrBackData {
   num: number;
 }
 
+export interface GetClockInParams {
+  xh: string;
+  timestamp: number;
+}
+
 export const apply = (data: ApplyReq) =>
   post<ApplyRes>('/lxsp_new/post_lxsp_spxx.php', {
-    key: json2base64(data),
+    key: obj2base64(data),
   });
 
 export const getList = (data: GetListReq) =>
   post<GetListRes>('/lxsp_new/get_lxsp_student_list.php', {
-    key: json2base64(data),
+    key: obj2base64(data),
   });
 
 export const leaveOrBack = (data: LeaveOrBackReq) =>
   post<LeaveOrBackRes>('/lxsp_new/post_lxsp_sm.php', {
-    key: json2base64(data),
+    key: obj2base64(data),
   });
 
-export const getClockinStatus = (data: any) =>
+export const getClockinStatus = (data: GetClockInParams) =>
   post<any>('/mrdk/get_mrdk_flag.php', {
-    key: json2base64(data),
+    key: obj2base64(data),
   });
 
 export const getLocation = (address: string) =>
@@ -141,5 +146,5 @@ export const getLocation = (address: string) =>
 
 export const clockin = (data: any) =>
   post<any>('/mrdk/post_mrdk_info.php', {
-    key: json2base64(data),
+    key: obj2base64(data),
   });

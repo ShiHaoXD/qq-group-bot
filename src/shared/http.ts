@@ -1,4 +1,4 @@
-import type {AxiosRequestConfig, AxiosResponse} from 'axios';
+import type {AxiosError, AxiosRequestConfig, AxiosResponse} from 'axios';
 import axios from 'axios';
 import axiosRetry from 'axios-retry';
 
@@ -31,9 +31,14 @@ export const createAxiosInstance = (
     config: AxiosRequestConfig = {}
   ): Promise<AxiosResponse<T>> {
     try {
-      return instance.get(url, {params, ...config});
+      return await instance.get(url, {params, ...config});
     } catch (error) {
-      throw new Error(error + '');
+      const {
+        code,
+        message,
+        config: {baseURL, url},
+      } = error as AxiosError;
+      throw new Error(`[GET ${baseURL}${url}] ${code} ${message}`);
     }
   }
 
@@ -43,9 +48,14 @@ export const createAxiosInstance = (
     config: AxiosRequestConfig = {}
   ): Promise<AxiosResponse<T>> {
     try {
-      return instance.post(url, data, config);
+      return await instance.post(url, data, config);
     } catch (error) {
-      throw new Error(error + '');
+      const {
+        code,
+        message,
+        config: {baseURL, url},
+      } = error as AxiosError;
+      throw new Error(`[POST ${baseURL}${url}] ${code} ${message}`);
     }
   }
   return {

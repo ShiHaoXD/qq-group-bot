@@ -1,6 +1,6 @@
 import axios from 'axios';
 import cheerio from 'cheerio';
-import * as puppeteer from 'puppeteer';
+import puppeteer from 'puppeteer';
 import {getNowTimeString} from '../../shared/date';
 const API = 'https://s.weibo.com/top/summary?cate=realtimehot';
 

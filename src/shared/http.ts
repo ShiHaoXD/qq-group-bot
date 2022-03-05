@@ -1,15 +1,29 @@
 import type {AxiosRequestConfig, AxiosResponse} from 'axios';
 import axios from 'axios';
+import axiosRetry from 'axios-retry';
+
+export interface createAxiosInstanceOptions {
+  retry?: boolean;
+  retryTimes?: number;
+}
 
 export const createAxiosInstance = (
-  baseURL: string,
-  headers: Record<string, any> = {}
+  baseURL = '',
+  headers: Record<string, any> = {},
+  options: createAxiosInstanceOptions = {}
 ) => {
   const instance = axios.create({
     baseURL,
     headers,
     timeout: 6000,
   });
+
+  if (options.retry) {
+    axiosRetry(instance, {
+      retries: options.retryTimes ?? 3,
+      retryDelay: axiosRetry.exponentialDelay,
+    });
+  }
 
   async function get<T>(
     url: string,

@@ -1,3 +1,10 @@
+# 1.6.0
+
+## Features
+
+- http 方法增加请求失败重试功能
+- 完善 http 方法错误处理信息
+- 增加 weather api 接口定义和失败重试
 # 1.5.1
 
 ### Bug Fixes

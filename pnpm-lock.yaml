@@ -14,7 +14,9 @@ specifiers:
   node-schedule: ^2.1.0
   nodemon: ^2.0.15
   oicq: ^2.2.0
+  picocolors: ^1.0.0
   pm2: ^5.2.0
+  prettier: ^2.5.1
   puppeteer: ^13.4.0
   qs: ^6.10.2
   ts-node: ^10.4.0
@@ -29,6 +31,7 @@ dependencies:
   dotenv: 10.0.0
   node-schedule: 2.1.0
   oicq: 2.2.0
+  picocolors: 1.0.0
   puppeteer: 13.4.0
   qs: 6.10.3
 
@@ -40,6 +43,7 @@ devDependencies:
   gts: 3.1.0_typescript@4.5.5
   nodemon: 2.0.15
   pm2: 5.2.0
+  prettier: 2.5.1
   ts-node: 10.5.0_99a448058f874aec2a353d0e974167cc
   typescript: 4.5.5
   vitest: 0.5.7_c8@7.11.0
@@ -2962,7 +2966,6 @@ packages:
 
   /picocolors/1.0.0:
     resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==}
-    dev: true
 
   /picomatch/2.3.1:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}

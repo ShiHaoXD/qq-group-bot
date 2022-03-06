@@ -2,6 +2,7 @@ import type {Client} from 'oicq';
 import {createClient} from 'oicq';
 import Helper from './Helper';
 import type {Plugin} from './shared/types';
+const pkg = require('../package.json');
 
 type usePluginFn = (plugin: Plugin) => void;
 
@@ -38,7 +39,7 @@ export function createBot(account: number, password: string, groupID: number) {
 
   client.on('system.online', () => {
     helper.plugins.forEach(plugin => plugin.install(client, helper));
-    helper.sendMsg('bot 启动成功');
+    helper.sendMsg(`bot 启动成功，当前版本 ${pkg.version}`);
   });
 
   return {

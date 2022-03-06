@@ -1,9 +1,9 @@
-import type {Client} from 'oicq';
+import type {Client, Sendable} from 'oicq';
 import type Helper from '../Helper';
 
 export interface replyKeyword {
   readonly regex: RegExp;
-  readonly reply: string;
+  readonly reply: Sendable;
 }
 
 export interface Food {

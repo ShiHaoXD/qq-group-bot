@@ -7,7 +7,7 @@ const readedNews = new Map<string, string>();
 
 async function JwzxNews(helper: Helper) {
   const {
-    data: {data: list},
+    data: {data: list = []},
   } = await getJwzxNews(1);
   const result: string[] = [];
   result.push('教务在线新闻:');

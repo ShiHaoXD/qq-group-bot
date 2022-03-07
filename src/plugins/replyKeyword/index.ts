@@ -4,7 +4,9 @@ import type {installFn, Plugin} from '../../shared/types';
 import {dynamicImport, getConfigFileDir} from '../../shared/utils';
 import type {Config} from './types/config';
 
-const {replyKeywords}: Config = dynamicImport(getConfigFileDir(__dirname));
+const {replyKeywords}: Config = dynamicImport(
+  getConfigFileDir(__dirname)
+).default;
 
 function listener(data: GroupMessageEvent, helper: Helper) {
   const {group_id, raw_message} = data;

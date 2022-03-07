@@ -9,7 +9,7 @@ import {apply, getList, leaveOrBack} from './api';
 import {LEAVE_OR_BACK_TYPE} from './constants';
 
 import type Config from './types/config';
-const {infos}: Config = dynamicImport(getConfigFileDir(__dirname));
+const {infos}: Config = dynamicImport(getConfigFileDir(__dirname)).default;
 
 const initialInfo = {
   nj: '2019',

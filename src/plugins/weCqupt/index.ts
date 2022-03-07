@@ -8,7 +8,7 @@ import {applyLeaveSchool, leaveOrBackSchool} from './free';
 import healthClockin from './healthClockin';
 import type Config from './types/config';
 
-const {infos}: Config = dynamicImport(getConfigFileDir(__dirname));
+const {infos}: Config = dynamicImport(getConfigFileDir(__dirname)).default;
 
 let clockinSwitch = true;
 

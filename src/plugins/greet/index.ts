@@ -4,7 +4,7 @@ import type {installFn, Plugin} from '../../shared/types';
 import {dynamicImport, getConfigFileDir} from '../../shared/utils';
 import type {Config} from './types/config';
 
-const {reply}: Config = dynamicImport(getConfigFileDir(__dirname));
+const {reply}: Config = dynamicImport(getConfigFileDir(__dirname)).default;
 
 function talk(data: GroupMessageEvent, helper: Helper) {
   const {

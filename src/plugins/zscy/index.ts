@@ -9,8 +9,8 @@ import type {GetInfoResData, TaskItem} from './apis/integral';
 import {getInfo, progressTask} from './apis/integral';
 import type {TokenReq} from './apis/login';
 import {getToken} from './apis/login';
-import type {ZscyAccount} from './types/config';
-const {zscyAccounts} = dynamicImport(getConfigFileDir(__dirname));
+import type {Config, ZscyAccount} from './types/config';
+const {zscyAccounts}: Config = dynamicImport(getConfigFileDir(__dirname));
 
 // 睡眠函数
 const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));

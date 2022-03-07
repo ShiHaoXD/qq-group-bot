@@ -1,9 +1,12 @@
-import type {ZscyAccount} from '../../shared/types';
+import {defineConfig} from '../../shared/utils';
+import type {Config} from './types/config';
 
-export const zscyAccounts: ZscyAccount[] = [
-  {
-    qq: 1213,
-    stuNum: '学号',
-    idNum: '登录掌上重邮的密码',
-  },
-];
+export default defineConfig<Config>({
+  zscyAccounts: [
+    {
+      qq: 1213,
+      stuNum: '学号',
+      idNum: '登录掌上重邮的密码',
+    },
+  ],
+});

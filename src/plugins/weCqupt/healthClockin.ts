@@ -1,7 +1,9 @@
 import type Helper from '../../Helper';
 import {getLocalTime, getNowTimestamp} from '../../shared/date';
+import {dynamicImport, getConfigFileDir} from '../../shared/utils';
 import {clockin, getClockinStatus, getLocation} from './api';
-import {infos} from './config.private';
+import type Config from './types/config';
+const {infos}: Config = dynamicImport(getConfigFileDir(__dirname));
 
 const dateCode = [
   's9ZS',

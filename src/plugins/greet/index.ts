@@ -1,7 +1,11 @@
 import type {GroupMessageEvent} from 'oicq';
 import type Helper from '../../Helper';
 import type {installFn, Plugin} from '../../shared/types';
-import {reply} from './config.private';
+import {dynamicImport, getConfigFileDir} from '../../shared/utils';
+import type {Config} from './types/config';
+
+const {reply}: Config = dynamicImport(getConfigFileDir(__dirname));
+
 function talk(data: GroupMessageEvent, helper: Helper) {
   const {
     raw_message,

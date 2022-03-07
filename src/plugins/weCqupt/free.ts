@@ -3,10 +3,13 @@ import {
   getNowTimeString,
   getTodayLastTimeString,
 } from '../../shared/date';
+import {dynamicImport, getConfigFileDir} from '../../shared/utils';
 import type {LeaveOrBackReq} from './api';
 import {apply, getList, leaveOrBack} from './api';
-import {infos} from './config.private';
 import {LEAVE_OR_BACK_TYPE} from './constants';
+
+import type Config from './types/config';
+const {infos}: Config = dynamicImport(getConfigFileDir(__dirname));
 
 const initialInfo = {
   nj: '2019',

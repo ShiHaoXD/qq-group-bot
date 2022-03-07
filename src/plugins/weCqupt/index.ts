@@ -2,10 +2,13 @@ import {scheduleJob} from 'node-schedule';
 import type {GroupMessageEvent, PrivateMessageEvent} from 'oicq';
 import type Helper from '../../Helper';
 import type {installFn, Plugin} from '../../shared/types';
-import {infos} from './config.private';
+import {dynamicImport, getConfigFileDir} from '../../shared/utils';
 import type {LEAVE_OR_BACK_TYPE} from './constants';
 import {applyLeaveSchool, leaveOrBackSchool} from './free';
 import healthClockin from './healthClockin';
+import type Config from './types/config';
+
+const {infos}: Config = dynamicImport(getConfigFileDir(__dirname));
 
 let clockinSwitch = true;
 

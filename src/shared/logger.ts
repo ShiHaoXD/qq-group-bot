@@ -5,10 +5,10 @@ export type LogType = 'error' | 'warn' | 'info';
 function output(type: LogType, msg: string) {
   const tag =
     type === 'info'
-      ? colors.cyan(colors.bold(type) + msg)
+      ? colors.cyan(colors.bold(type))
       : type === 'warn'
-      ? colors.yellow(colors.bold(type) + msg)
-      : colors.red(colors.bold(type) + msg);
+      ? colors.yellow(colors.bold(type))
+      : colors.red(colors.bold(type));
   console.log(`${colors.dim(new Date().toLocaleTimeString())} ${tag} ${msg}`);
 }
 

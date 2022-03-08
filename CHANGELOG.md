@@ -1,3 +1,8 @@
+# 1.7.1
+
+## Bug Fixes
+
+- logger 输出修改
 # 1.7.0
 
 ## Features

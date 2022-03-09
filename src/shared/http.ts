@@ -38,7 +38,7 @@ export const createAxiosInstance = (
         message,
         config: {baseURL, url},
       } = error as AxiosError;
-      throw new Error(`[GET ${baseURL}${url}] ${code} ${message}`);
+      throw new Error(`[GET ${baseURL}${url}] ${code} ${message}\n${error}`);
     }
   }
 
@@ -55,7 +55,7 @@ export const createAxiosInstance = (
         message,
         config: {baseURL, url},
       } = error as AxiosError;
-      throw new Error(`[POST ${baseURL}${url}] ${code} ${message}`);
+      throw new Error(`[POST ${baseURL}${url}] ${code} ${message}\n${error}`);
     }
   }
   return {

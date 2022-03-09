@@ -1,4 +1,10 @@
-# 1.7.1
+# 1.8.0
+
+## Features
+
+- feat(weather): 新增每日天气
+
+# 1.7.2
 
 ## Bug Fixes
 

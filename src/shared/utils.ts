@@ -7,7 +7,7 @@ export const obj2base64 = (obj: Record<string, any>) =>
 export const getConfigFileDir = (dir: string) => {
   const resolve = (config: string) => path.resolve(dir, config);
 
-  return fs.existsSync(path.resolve(dir, './config.private'))
+  return fs.existsSync(path.resolve(dir, './config.private.ts'))
     ? resolve('./config.private')
     : resolve('./config.example');
 };

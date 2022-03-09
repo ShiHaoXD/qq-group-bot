@@ -6,8 +6,8 @@ export const obj2base64 = (obj: Record<string, any>) =>
 
 export const getConfigFileDir = (dir: string) => {
   const resolve = (config: string) => path.resolve(dir, config);
-
-  return fs.existsSync(path.resolve(dir, './config.private.ts'))
+  // 最后会转译为 .js 文件
+  return fs.existsSync(path.resolve(dir, './config.private.js'))
     ? resolve('./config.private')
     : resolve('./config.example');
 };

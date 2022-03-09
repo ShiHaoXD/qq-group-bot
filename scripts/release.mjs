@@ -8,4 +8,3 @@ const {version} = JSON.parse(content);
 await $`git add package.json CHANGELOG.md`;
 await $`git commit -m "chore(release): ${version}"`;
 await $`git tag ${version}`;
-await $`git push`;

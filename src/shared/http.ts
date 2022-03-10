@@ -33,13 +33,12 @@ export const createAxiosInstance = (
     try {
       return await instance.get(url, {params, ...config});
     } catch (error) {
-      const {
-        code,
-        message,
-        config: {baseURL, url},
-      } = error as AxiosError;
+      const {code, message, config: errorConfig} = error as AxiosError;
+      const {baseURL, url} = errorConfig;
       throw new Error(
-        `[GET ${baseURL}${url}] ${code} ${message}\n${JSON.stringify(config)}`
+        `[GET ${baseURL}${url}] ${code} ${message}\n${JSON.stringify(
+          errorConfig
+        )}`
       );
     }
   }
@@ -52,13 +51,12 @@ export const createAxiosInstance = (
     try {
       return await instance.post(url, data, config);
     } catch (error) {
-      const {
-        code,
-        message,
-        config: {baseURL, url},
-      } = error as AxiosError;
+      const {code, message, config: errorConfig} = error as AxiosError;
+      const {baseURL, url} = errorConfig;
       throw new Error(
-        `[POST ${baseURL}${url}] ${code} ${message}\n${JSON.stringify(config)}`
+        `[POST ${baseURL}${url}] ${code} ${message}\n${JSON.stringify(
+          errorConfig
+        )}`
       );
     }
   }

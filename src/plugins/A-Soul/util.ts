@@ -6,7 +6,7 @@ import {Urls} from './info';
 import type {Data, Dates} from './types';
 export const initBrowser = async () => {
   const browser = await puppeteer.launch({
-    headless: false,
+    headless: true,
     defaultViewport: {width: 1920, height: 1080},
     args: ['--start-maximized', '--no-sandbox'],
     ignoreDefaultArgs: ['--enable-automation'],
